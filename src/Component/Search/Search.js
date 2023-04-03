@@ -1,9 +1,5 @@
 import React from "react";
-import '../../css/Landing.css';
-
-// Import icon
-import { BsSearch } from 'react-icons/bs'
-
+import '../../css/landing.css';
 
 const Search = () => {
     return (
@@ -29,14 +25,14 @@ const Search = () => {
 
                 <div className="searchInputs flex">
                     <div className="singleInput flex">
-                    {/* <div className="iconDiv">
+                        {/* <div className="iconDiv">
                             <BsSearch className="icon" />
                         </div> */}
                         <div className="texts">
                             <h4>Search</h4>
                             <input type="text" placeholder="Search food here" />
                         </div>
-                       
+
                         <buton className="btn btnBlock flex"> Search </buton>
                     </div>
 

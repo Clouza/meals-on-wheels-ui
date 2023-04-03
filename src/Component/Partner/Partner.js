@@ -1,5 +1,5 @@
-import React,{useEffect} from "react";
-import '../../css/Landing.css';
+import React, { useEffect } from "react";
+import '../../css/landing.css';
 //import image
 import phd from '../../assets/phd.jpg';
 import phdlogo from '../../assets/image 39.png';
@@ -45,19 +45,19 @@ const partner = [
 ]
 
 const Partner = () => {
-     // Use effect animation duration
-     useEffect(() => {
-        Aos.init({duration: 2000})
-    },[])
+    // Use effect animation duration
+    useEffect(() => {
+        Aos.init({ duration: 2000 })
+    }, [])
     return (
         <div className="partner container section">
             <div className="sectionContainer">
                 <h2 data-aos='fade-up' data-aos-duration='2500' >Our Partner</h2>
             </div>
             <div className="partnerContainer grid">
-                
+
                 {
-                    partner.map(({id,partnerImage,logoImage }) => {
+                    partner.map(({ id, partnerImage, logoImage }) => {
                         return (
                             // {/* card single partner */}
                             <div data-aos='fade-up' data-aos-duration='2000' key={id} className="singlePartner">

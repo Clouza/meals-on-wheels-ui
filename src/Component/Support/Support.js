@@ -1,19 +1,20 @@
-import React,{useEffect} from "react";
-import '../../css/Landing.css';
-//import img
+import React, { useEffect } from "react";
+import '../../css/landing.css';
+
+// import img
 import support from '../../assets/support.png';
 
-//import AOS
+// import AOS
 import Aos from 'aos';
 import 'aos/dist/aos.css'
 
-const Support = () =>{
-        // Use effect animation duration
-        useEffect(() => {
-            Aos.init({duration: 2000})
-        },[])
+const Support = () => {
+    // Use effect animation duration
+    useEffect(() => {
+        Aos.init({ duration: 2000 })
+    }, [])
 
-    return(
+    return (
         <div className="support container section">
             <div className="sectionContainer">
                 <div data-aos='fade-up' data-aos-duration='3000' className="titlesDiv">
@@ -41,7 +42,7 @@ const Support = () =>{
                             <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum has</p>
                         </div>
 
-                        <div data-aos='fade-up' data-aos-duration='500'  className="singleInfo">
+                        <div data-aos='fade-up' data-aos-duration='500' className="singleInfo">
                             <span className="number colorTwo">03</span>
                             <h4>Share happiness with Meals On Wheels</h4>
                             <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum has</p>
@@ -50,7 +51,7 @@ const Support = () =>{
                     </div>
 
                     <div data-aos='fade-up' data-aos-duration='2000' className="imgDiv">
-                        <img src={support} alt=""/>
+                        <img src={support} alt="" />
                     </div>
                 </div>
             </div>
