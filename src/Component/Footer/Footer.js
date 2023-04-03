@@ -1,33 +1,33 @@
 import React from "react";
-import '../../css/Landing.css';
+import '../../css/landing.css';
 
 // img
 import logo from '../../assets/whitelogo.png';
 
 //icon
-import {TiSocialFacebook} from 'react-icons/ti';
-import {AiFillYoutube, AiOutlineTwitter} from 'react-icons/ai';
-import {FaPinterestP} from 'react-icons/fa';
+import { TiSocialFacebook } from 'react-icons/ti';
+import { AiFillYoutube, AiOutlineTwitter } from 'react-icons/ai';
+import { FaPinterestP } from 'react-icons/fa';
 
-const Footer =()=>{
-    return(
+const Footer = () => {
+    return (
         <div className="footer">
             <div className="sectionContainer container grid">
                 <div className="gridOne">
                     <div className="logoDiv">
-                        <img src={logo} className="Logo"/>
+                        <img src={logo} className="Logo" />
                     </div>
                     <p> Your mind under taken and under water please help me</p>
                     <div className="socialIcon flex">
-                        <TiSocialFacebook className="icon"/>
-                        <AiOutlineTwitter className="icon"/>
-                        <AiFillYoutube className="icon"/>
-                        <FaPinterestP className="icon"/>
+                        <TiSocialFacebook className="icon" />
+                        <AiOutlineTwitter className="icon" />
+                        <AiFillYoutube className="icon" />
+                        <FaPinterestP className="icon" />
                     </div>
                 </div>
 
                 <div className="footerLinks">
-                    <span className="linkTitle">Information</span>
+                    <span className="linkTitle">{lang.information}</span>
 
                     <li>
                         <a href="">Home</a>

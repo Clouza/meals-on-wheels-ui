@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import '../../css/Landing.css';
+import '../../css/landing.css';
 
 //import image
 import lounge from '../../assets/lounge.png'

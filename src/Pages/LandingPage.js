@@ -1,31 +1,28 @@
 import React from "react";
-import '../css/Landing.css';
-import NavbarMember from "../Component/Navbar/NavbarMember";
-import Home from "../Component/Home/Home";
-import Lounge from "../Component/Lounnge/Lounge";
-import Info from "../Component/Info/Info";
-import Footer from "../Component/Footer/Footer";
-import Search from "../Component/Search/Search";
-import Support from "../Component/Support/Support";
-import Partner from "../Component/Partner/Partner";
-import Subscribe from "../Component/Subscribe/Subscribe";
-const LandingPage =()=>{
+import '../css/landing.css';
+
+import NavbarMember from "../component/navbar/NavbarMember";
+import Home from "../component/home/Home";
+import Lounge from "../component/lounge/Lounge";
+import Info from "../component/info/Info";
+import Footer from "../component/footer/Footer";
+import Support from "../component/support/Support";
+import Partner from "../component/partner/Partner";
+import Subscribe from "../component/subscribe/Subscribe";
+
+const LandingPage = () => {
     return (
         <>
-        <NavbarMember/>
-        <Home/>
-        <Support/>
-        <Info/>
-        <Lounge/>
-        <Partner/>
-        <Subscribe/>
-        <Footer/>
-        {/*
-        <Search/>
-        
-         */}
+            <NavbarMember />
+            <Home />
+            <Support />
+            <Info />
+            <Lounge />
+            <Partner />
+            <Subscribe />
+            <Footer />
         </>
-        
+
     )
 }
 export default LandingPage;
