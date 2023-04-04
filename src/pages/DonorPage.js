@@ -2,10 +2,8 @@ import DonorForm from "../component/donor/DonorForm";
 
 const DonorPage = () => {
 	return(
-		<>
-           
-			<DonorForm/>
-        
+		<>        
+			<DonorForm/>       
 		</>
 	)
 }

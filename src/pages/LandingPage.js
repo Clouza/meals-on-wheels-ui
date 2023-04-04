@@ -1,14 +1,14 @@
 import React from "react";
 import '../css/Landing.css';
 
-import NavbarMember from "../component/navbar/NavbarMember";
-import Home from "../component/home/Home"
-import Lounge from "../component/lounge/Lounge";
-import Info from "../component/info/Info";
-import Footer from "../component/footer/Footer";
-import Support from "../component/support/Support";
-import Partner from "../component/partner/Partner";
-import Subscribe from "../component/subscribe/Subscribe";
+import NavbarMember from "../components/navbar/NavbarMember";
+import Home from "../components/home/Home";
+import Lounge from "../components/lounge/Lounge";
+import Info from "../components/info/Info";
+import Footer from "../components/footer/Footer";
+import Support from "../components/support/Support";
+import Partner from "../components/partner/Partner";
+import Subscribe from "../components/subscribe/Subscribe";
 
 const LandingPage = () => {
     return (
@@ -22,7 +22,6 @@ const LandingPage = () => {
             <Subscribe/>
             <Footer/>
         </>
-
     )
 }
 export default LandingPage;
