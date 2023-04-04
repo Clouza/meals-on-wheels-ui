@@ -15,6 +15,9 @@ import Locale from "./Locale";
 import lang from '../../Localization';
 
 const NavbarMember = () => {
+    const styles = {
+        marginRight: '10px',
+    };
     // for remove navbar in the small witdth screen
     const [active, setActive] = useState('navBarMenu');
 
@@ -77,10 +80,10 @@ const NavbarMember = () => {
                         <li onClick={removeNavBar} className="listItem"> <a href="/donate">Donate </a> </li>
                         <li onClick={removeNavBar} className="listItem"><a href="/about">About</a></li>
                         <li onClick={removeNavBar} className="listItem"><a href="/contact">Contact</a>  </li>
-                        <li onClick={removeNavBar} className="listItem"> {lang.navbar_home} </li>
+                        {/* <li onClick={removeNavBar} className="listItem"> {lang.navbar_home} </li>
                         <li onClick={removeNavBar} className="listItem"> {lang.navbar_donate} </li>
                         <li onClick={removeNavBar} className="listItem"> {lang.navbar_about} </li>
-                        <li onClick={removeNavBar} className="listItem"> {lang.navbar_contact} </li>
+                        <li onClick={removeNavBar} className="listItem"> {lang.navbar_contact} </li> */}
                     </ul>
 
                     <Link to="/login">
