@@ -1,8 +1,8 @@
 import React from "react";
-import '../css/landing.css';
+import '../css/Landing.css';
 
 import NavbarMember from "../component/navbar/NavbarMember";
-import Home from "../component/home/Home";
+import Home from "../component/home/Home"
 import Lounge from "../component/lounge/Lounge";
 import Info from "../component/info/Info";
 import Footer from "../component/footer/Footer";
@@ -13,14 +13,14 @@ import Subscribe from "../component/subscribe/Subscribe";
 const LandingPage = () => {
     return (
         <>
-            <NavbarMember />
-            <Home />
-            <Support />
-            <Info />
-            <Lounge />
-            <Partner />
-            <Subscribe />
-            <Footer />
+            <NavbarMember/>
+            <Home/>
+            <Support/>
+            <Info/>
+            <Lounge/>
+            <Partner/>
+            <Subscribe/>
+            <Footer/>
         </>
 
     )

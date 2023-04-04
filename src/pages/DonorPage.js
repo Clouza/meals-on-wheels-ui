@@ -1,6 +1,4 @@
-import DonorForm from "../Component/Donor/DonorForm";
-import Footer from "../Component/Footer/Footer"
-import NavbarMember from "../Component/Navbar/NavbarMember"
+import DonorForm from "../component/donor/DonorForm";
 
 const DonorPage = () => {
 	return(

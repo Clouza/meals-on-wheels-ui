@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import '../../css/landing.css';
+import '../../css/Landing.css';
 
 // Imprted assets
 import banner from '../../assets/banner.jpg'
