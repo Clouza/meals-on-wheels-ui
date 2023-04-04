@@ -1,6 +1,6 @@
 import '../../css/donate.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import '../../css/landing.css';
+import '../../css/Landing.css';
 import visa from "../../assets/visa.png"
 
 const DonorForm = () => {
@@ -22,14 +22,14 @@ const DonorForm = () => {
 	};
 
 	return (
-		<div className="container-flex" >
+		<div className="container-flex donate" >
 			<div className="bg-image background justify-content-center" style={bgImage}>
 				<div className="mask py-4" style={maskStyle}>
 					<div className="container mainText py-4" style={maskFormStyle}>
 						<h2>Become a Donor</h2>
 						<form className="">
-							<div className="row mb-4">
-								<div className="col-sm-6">
+							<div className="row mb-3">
+								<div className="col-sm-6 mb-4">
 									<label className="form-label">Name</label>
 									<input className="form-control" type="text" placeholder="Input your name here" required />
 								</div>
@@ -48,14 +48,15 @@ const DonorForm = () => {
 									<input className="form-control" type="email" placeholder="@example.com" required />
 								</div>
 								<div className="col">
-									<label className="form-label">Date</label>
-									<input className="form-control" type="date" />
+									<label className="form-label">Amount</label>
+									<input className="form-control" type="text" />
 								</div>
 							</div>
-							<div>
+							<div className='mb-4'>
 								<label className="form-label">Comment</label>
 								<textarea className="form-control" rows="5" placeholder="Enter your comments"></textarea>
 							</div>
+							<button className='btn btn-success form-control'>Donate</button>
 						</form>
 					</div>
 				</div>
