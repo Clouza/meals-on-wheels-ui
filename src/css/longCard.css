@@ -1,0 +1,93 @@
+.cardbox{
+  margin-top: -40px;
+  margin-bottom: 20px;
+}
+.card {
+  display: flex;
+  flex-direction: row;
+  width: 60%;
+  max-width: 100%px;
+  border: 1px solid #ccc;
+  /* box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); */
+  border-radius: 5px;
+  overflow: hidden;
+  margin: 10px auto;
+
+}
+
+.card-image {
+  border-radius: 10px;
+  width: 25%;
+  height: 100%;
+}
+.card-image img{
+  border-radius: 20px;
+  padding: 10px;
+}
+
+.card-content {
+  width: 50%;
+  padding: 10px;
+}
+.card-content p{
+  margin: 0;
+  padding: 0;
+}
+
+.card-cancel {
+  width: 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.card-apply {
+  width: 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card-apply button {
+  padding: 5px 10px;
+  border-radius: 10px;
+  border: none;
+  background-color: #458D5F;
+  color: #fff;
+  font-weight: 600;
+}
+
+.card-cancel button {
+  padding: 5px 10px;
+  border-radius: 10px;
+  border: none;
+  background-color: #DC6767;
+  color: #fff;
+  font-weight: 600;
+}
+
+@media (max-width: 768px) {
+  .card {
+    flex-direction: column;
+    max-width: 100%;
+  }
+
+  .card-image {
+    width: 100%;
+    height: 150px;
+  }
+
+  .card-content {
+    width: 100%;
+    text-align: center;
+  }
+  
+
+  .card-cancel {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+}

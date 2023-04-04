@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import '../../css/landing.css';
+import { Link } from 'react-router-dom';
 
 // Import icon
 import { SiConsul } from 'react-icons/si';
@@ -11,6 +12,9 @@ import { CgMenuGridO } from 'react-icons/cg'
 import logo from '../../assets/logo.png';
 
 const NavbarMember = () => {
+    const styles = {
+        marginRight: '10px',
+    };
     // for remove navbarr in the small witdth screen
     const [active, setActive] = useState('navBarMenu')
     const showNavBar = () => {
@@ -56,26 +60,38 @@ const NavbarMember = () => {
 
                 <div className={active}>
                     <ul className="menu flex">
-                        <li onClick={removeNavBar} className="listItem"> Home </li>
-                        <li onClick={removeNavBar} className="listItem"> Donate </li>
-                        <li onClick={removeNavBar} className="listItem"> About </li>
-                        <li onClick={removeNavBar} className="listItem"> Contact </li>
+                        <li onClick={removeNavBar} className="listItem"> <a href="/">Home</a> </li>
+                        <li onClick={removeNavBar} className="listItem"> <a href="/donate">Donate </a> </li>
+                        <li onClick={removeNavBar} className="listItem"><a href="/about">About</a></li>
+                        <li onClick={removeNavBar} className="listItem"><a href="/contact">Contact</a>  </li>
                     </ul>
 
-                    <button onClick={removeNavBar} className="btn flex btnTwo">
-                        Login
-                    </button>
-                    <button onClick={removeNavBar} className="btn flex btnOne">
-                        Join
-                    </button>
+                    <Link to="/login">
+                        <button onClick={removeNavBar} className="btn flex btnTwo">
+                            Login
+                        </button>
+                    </Link>
+
+
+                    <Link to="/register">
+                        <button onClick={removeNavBar} className="btn flex btnOne">
+                            Join
+                        </button>
+                    </Link>
                 </div>
-                <button className="btn flex btnoutThree">
+                <Link to="/login">
+                <button style={styles} className="btn flex btnoutThree">
                     Login
                 </button>
-
-                <button className="btn flex btnThree">
+                </Link>
+                
+                
+                <Link to="/register">
+                <button style={styles} className="btn flex btnThree">
                     Join
                 </button>
+                </Link>
+                
 
                 <div onClick={showNavBar} className="toggleIcon">
                     <CgMenuGridO className="icon" />

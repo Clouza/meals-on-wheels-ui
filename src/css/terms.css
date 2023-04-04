@@ -1,0 +1,70 @@
+:root {
+    --bg-clr: hsl(244, 75%, 57%);
+    --white: #fff;
+    --primary-text-clr: #212121;
+    --secondary-text-clr: #000000;
+    --bg-hvr: hsl(244, 75%, 57%);
+  }
+  
+  .flex_align_justify{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .flex_align{
+    display: flex;
+    align-items: center;
+  }
+  
+  .wrapper{
+    min-height: 100vh;
+    padding: 150px 20px;
+  }
+  
+  .terms_service{
+    max-width: 100%;
+    height: 600px;
+    background: var(--white);
+    border-radius: 3px;
+    box-shadow: 0px 0px 3px rgba(0,0,0,0.15);
+  }
+  
+  .terms_service .tc_item{
+    padding: 20px 40px;
+  }
+  
+  .terms_service .tc_head{
+    box-shadow: 0 1px 2px rgba(0,0,0,0.15);
+    height: 90px;
+  }
+  
+  .terms_service .tc_head .icon{
+    width: 50px;
+    height: 50px;
+    background: var(--bg-clr);
+    margin-right: 20px;
+    border-radius: 50%;
+    font-size: 18px;
+    color: var(--white);
+  }
+  
+  .terms_service .tc_body{
+    height: calc(100% - 170px);
+    overflow: auto;
+    padding-right: 20px;
+  }
+  
+  .terms_service .tc_body ol li{
+    margin-bottom: 15px;
+  }
+  
+  .terms_service .tc_body ol li h3{
+    margin-bottom: 5px;
+  }
+  
+  .terms_service .tc_foot{
+    box-shadow: 0 -1px 2px rgba(0,0,0,0.15);
+    justify-content: space-between;
+    height: 80px;
+  }
