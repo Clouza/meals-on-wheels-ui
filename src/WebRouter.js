@@ -3,9 +3,14 @@ import { Route, Routes } from 'react-router-dom';
 import DonorPage from './pages/DonorPage';
 import LandingPage from './pages/LandingPage';
 import DonorTyPage from './pages/DonorTyPage';
-import PartnersFoodListPage from './pages/ParnersFoodListPage';
 
-;
+// default locale
+import lang from './Localization';
+if (!sessionStorage.getItem("locale")) {
+  sessionStorage.setItem("locale", "en");
+  sessionStorage.setItem('language', 'English');
+}
+lang.setLanguage(sessionStorage.getItem("locale"));
 
 function App() {
   return (
