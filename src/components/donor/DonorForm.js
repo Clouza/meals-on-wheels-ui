@@ -1,6 +1,6 @@
 import '../../css/donate.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import '../../css/Landing.css';
+import '../../css/landing.css';
 import visa from "../../assets/visa.png"
 
 const DonorForm = () => {

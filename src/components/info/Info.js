@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import '../../css/Landing.css';
+import '../../css/landing.css';
 
 // import icon
 import { RxCalendar } from 'react-icons/rx';

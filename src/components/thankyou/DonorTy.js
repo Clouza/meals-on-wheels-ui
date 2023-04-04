@@ -1,5 +1,5 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import '../../css/Landing.css';
+import '../../css/landing.css';
 import '../../css/donateTy.css'
 import tyImage from '../../assets/donateThankYou.png';
 

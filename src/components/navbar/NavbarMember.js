@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import '../../css/Landing.css';
+import '../../css/landing.css';
 
 // Import icon
 import { SiConsul } from 'react-icons/si';

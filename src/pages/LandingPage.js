@@ -1,5 +1,5 @@
 import React from "react";
-import '../css/Landing.css';
+import '../css/landing.css';
 
 import NavbarMember from "../components/navbar/NavbarMember";
 import Home from "../components/home/Home";

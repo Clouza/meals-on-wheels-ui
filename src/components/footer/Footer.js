@@ -1,5 +1,5 @@
 import React from "react";
-import '../../css/Landing.css';
+import '../../css/landing.css';
 
 // img
 import logo from '../../assets/whitelogo.png';
