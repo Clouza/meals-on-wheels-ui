@@ -4,7 +4,7 @@ import '../../css/landing.css';
 // img
 import logo from '../../assets/whitelogo.png';
 
-//icon
+// icon
 import { TiSocialFacebook } from 'react-icons/ti';
 import { AiFillYoutube, AiOutlineTwitter } from 'react-icons/ai';
 import { FaPinterestP } from 'react-icons/fa';

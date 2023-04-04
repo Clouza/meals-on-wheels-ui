@@ -1,13 +1,11 @@
-import DonorForm from "../Component/Donor/DonorForm";
-import Footer from "../Component/Footer/Footer"
-import NavbarMember from "../Component/Navbar/NavbarMember"
+import DonorForm from "../components/donor/DonorForm";
+import Footer from "../components/footer/Footer"
+import NavbarMember from "../components/navbar/NavbarMember"
 
 const DonorPage = () => {
-	return(
+	return (
 		<>
-           
-			<DonorForm/>
-        
+			<DonorForm />
 		</>
 	)
 }
