@@ -27,7 +27,7 @@ const Footer = () => {
                 </div>
 
                 <div className="footerLinks">
-                    <span className="linkTitle">{lang.information}</span>
+                    <span className="linkTitle">Information</span>
 
                     <li>
                         <a href="">Home</a>
