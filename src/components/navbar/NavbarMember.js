@@ -3,25 +3,33 @@ import '../../css/landing.css';
 import { Link } from 'react-router-dom';
 
 // Import icon
-import { SiConsul } from 'react-icons/si';
+import { SiConsul, SiSessionize } from 'react-icons/si';
 import { BsPhoneVibrate } from 'react-icons/bs';
 import { AiOutlineGlobal } from 'react-icons/ai';
-import { CgMenuGridO } from 'react-icons/cg'
+import { CgMenuGridO } from 'react-icons/cg';
+import { IoIosArrowDown } from "react-icons/io";
 
 // Import Image
 import logo from '../../assets/logo.png';
+import Locale from "./Locale";
+import lang from '../../Localization';
 
 const NavbarMember = () => {
-    const styles = {
-        marginRight: '10px',
-    };
-    // for remove navbarr in the small witdth screen
-    const [active, setActive] = useState('navBarMenu')
+    // for remove navbar in the small witdth screen
+    const [active, setActive] = useState('navBarMenu');
+
+    const [isChanged, setIsChanged] = useState(false);
+
     const showNavBar = () => {
         setActive('navBarMenu showNavBar')
     }
+
     const removeNavBar = () => {
         setActive('navBarMenu')
+    }
+
+    const localization = () => {
+        isChanged ? setIsChanged(false) : setIsChanged(true);
     }
 
     // for the secondnavbar , when scroll the boxshadow appear and background change
@@ -43,8 +51,13 @@ const NavbarMember = () => {
                 </div>
 
                 <div className="none flex">
-                    <li className="flex"> <BsPhoneVibrate />Support</li>
-                    <li className="flex"> <AiOutlineGlobal />Languages</li>
+                    <li className="flex">
+                        <BsPhoneVibrate /> Support
+                    </li>
+                    <li className="flex select-none" onClick={localization}>
+                        <AiOutlineGlobal /> {sessionStorage.getItem('language')} <IoIosArrowDown />
+                        {isChanged ? <Locale /> : ""}
+                    </li>
                 </div>
 
                 <div className="atb flex">
@@ -64,6 +77,10 @@ const NavbarMember = () => {
                         <li onClick={removeNavBar} className="listItem"> <a href="/donate">Donate </a> </li>
                         <li onClick={removeNavBar} className="listItem"><a href="/about">About</a></li>
                         <li onClick={removeNavBar} className="listItem"><a href="/contact">Contact</a>  </li>
+                        <li onClick={removeNavBar} className="listItem"> {lang.navbar_home} </li>
+                        <li onClick={removeNavBar} className="listItem"> {lang.navbar_donate} </li>
+                        <li onClick={removeNavBar} className="listItem"> {lang.navbar_about} </li>
+                        <li onClick={removeNavBar} className="listItem"> {lang.navbar_contact} </li>
                     </ul>
 
                     <Link to="/login">

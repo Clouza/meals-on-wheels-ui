@@ -16,6 +16,14 @@ import MemberOrderPage from './pages/member/MemberOrderPage';
 import DashboardRiderPage from './pages/rider/DashboardRiderPage';
 import ApplyDeliveryPage from './pages/rider/ApplyDeliveryPage';
 
+// default locale
+import lang from './Localization';
+if (!sessionStorage.getItem("locale")) {
+  sessionStorage.setItem("locale", "en");
+  sessionStorage.setItem('language', 'English');
+}
+lang.setLanguage(sessionStorage.getItem("locale"));
+
 function App() {
   return (
     <Routes>
