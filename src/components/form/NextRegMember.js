@@ -1,5 +1,8 @@
-import React from "react";
+import React,{ useState } from "react";
 import '../../css/form.css';
+import { useLocation,useNavigate } from 'react-router-dom';
+import Service from "../../service/Service";
+
 // Import Image
 import logo from '../../assets/logo.png';
 const NextRegMember = () => {
@@ -7,13 +10,54 @@ const NextRegMember = () => {
         marginRight: '10px',
         fontWeight: '500'
     };
+    // get data from form pervious input
+    const location = useLocation();
+    const userData = location.state.userData;
+    
+    // define message and file input
+    const [message, setMessage] = useState("");
+    const [selectedFile, setSelectedFile] = useState(null);
+    const navigate = useNavigate();
+
+    // handle the input
+    const handleFileChange = event => {
+        setSelectedFile(event.target.files[0]);
+    };
+    const handleMessageChange = event => {
+        setMessage(event.target.value);
+    };
+    
+    // handle form
+    const handleFormSubmit = (event) => {
+        event.preventDefault();
+
+        const formData = new FormData();
+        // this will fill the argument in spring boot method handleFileUpload
+        formData.append('file', selectedFile);
+        formData.append('username', userData.username);
+        formData.append('message', message);
+
+        // to do the basic auth
+        const loginCredentials ={
+            username:userData.username,
+            password:userData.password
+        }
+    
+        Service.uploadEvidence(formData,loginCredentials)
+          .then(res => {
+            // redirect page to login page
+            navigate('/login');
+          })
+          .catch(error => console.error(error));
+    };
+
     return (
         <>
             <main>
                 <div className="boxRegMember">
                     <div className="inner-box">
                         <div className="forms-wrap">
-                            <form onSubmit="" className="sign-in-form">
+                            <form onSubmit={handleFormSubmit} className="sign-in-form">
                                 <div className="logo">
                                     <img src={logo} alt="Marry meals" />
                                 </div>
@@ -28,13 +72,16 @@ const NextRegMember = () => {
                                         <input
                                             type="text"
                                             name="message"
-                                            placeholder="Email" minLength={4} className="input-field" autoComplete="off" required />
+                                            value={message}
+                                            onChange={handleMessageChange}
+                                            placeholder="Message" minLength={4} className="input-field" autoComplete="off" required/>
                                     </div>
                                     <div className="input-wrap">
                                         <label className="label">input evidence</label>
                                         <input
                                             type="file"
-                                            name="evidence"
+                                            name="evidence" 
+                                            onChange={handleFileChange}
                                             placeholder="evidence" className="input-field" autoComplete="off" required />
                                     </div>
                                     <input type="submit" value="Register" className="sign-btn" />

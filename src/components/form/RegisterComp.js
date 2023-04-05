@@ -3,25 +3,56 @@ import { useNavigate } from 'react-router-dom';
 import '../../css/form.css';
 // Import Image
 import logo from '../../assets/logo.png';
+import Service from '../../service/Service';
 const RegisterComp = () => {
     const styles = {
         marginRight: '10px',
         fontWeight: '500'
     };
+    // define each input
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [username, setUsername] = useState("");
     const [selectedOption, setSelectedOption] = useState('');
     const navigate = useNavigate();
 
+    // handle every input
     const handleOptionChange = (event) => {
         setSelectedOption(event.target.value);
     };
+    const handleEmailChange = (event) => {
+        setEmail(event.target.value);
+    };
+    const handlePasswordChange = (event) => {
+        setPassword(event.target.value);
+    };
+    const handleUsernameChange = (event) => {
+        setUsername(event.target.value);
+    };
 
+    // post the user login credentials to the database
     const handleFormSubmit = (event) => {
         event.preventDefault();
-        if (selectedOption === 'rider') {
-            navigate('/regrider');
-        } else if (selectedOption === 'member') {
-            navigate('/regmember');
+        const data={
+            username:username,
+            email:email,
+            password:password,
+            roles:selectedOption
         }
+        Service.register(data)
+        .then(response => {
+            // redirect page based what user select
+            if (selectedOption === 'RIDER') {
+                navigate('/regrider', { state: { userData: data } });
+            } else if (selectedOption === 'MEMBER') {
+                navigate('/regmember', { state: { userData: data } });
+            } else {
+                navigate('/login');
+            }
+        })
+        .catch(error => {
+            console.error(error);
+        });
     };
     return (
         <>
@@ -43,22 +74,31 @@ const RegisterComp = () => {
                                         <label className="label">Name</label>
                                         <input
                                             type="text"
-                                            name="email"
-                                            placeholder="Email" minLength={4} className="input-field" autoComplete="off" required />
+                                            name="username"
+                                            placeholder="Username" minLength={4} className="input-field" autoComplete="off" required 
+                                            value={username}
+                                            onChange={handleUsernameChange}
+                                        />
                                     </div>
                                     <div className="input-wrap">
                                         <label className="label">Email</label>
                                         <input
-                                            type="text"
+                                            type="email"
                                             name="email"
-                                            placeholder="Email" minLength={4} className="input-field" autoComplete="off" required />
+                                            placeholder="Email" minLength={4} className="input-field" autoComplete="off" required 
+                                            value={email}
+                                            onChange={handleEmailChange}
+                                        />
                                     </div>
                                     <div className="input-wrap">
                                         <label className="label">Password</label>
                                         <input
                                             type="password"
                                             name="password"
-                                            placeholder="Password" minLength={4} className="input-field" autoComplete="off" required />
+                                            placeholder="Password" minLength={4} className="input-field" autoComplete="off" required 
+                                            value={password}
+                                            onChange={handlePasswordChange}
+                                        />
                                     </div>
                                     <div className="heading">
                                         <h4>Register As :</h4>
@@ -66,22 +106,29 @@ const RegisterComp = () => {
 
                                     <div className="input-wrap">
                                         <input type="radio"
+                                            id="rider"
                                             name="option"
-                                            value="rider"
-                                            checked={selectedOption === 'rider'}
+                                            value="RIDER"
+                                            checked={selectedOption === 'RIDER'}
                                             onChange={handleOptionChange} />
 
-                                        <label style={styles} >Rider</label>
+                                        <label style={styles} htmlFor="rider">Rider</label>
 
                                         <input type="radio"
+                                            id="member"
                                             name="option"
-                                            value="member"
-                                            checked={selectedOption === 'member'}
+                                            value="MEMBER"
+                                            checked={selectedOption === 'MEMBER'}
                                             onChange={handleOptionChange} />
-                                        <label style={styles} >Member</label>
+                                        <label style={styles} htmlFor="member">Member</label>
 
-                                        <input type="radio" id="partner" name="fav_language" value="JavaScript" />
-                                        <label style={styles} for="partner">Partner</label>
+                                        <input type="radio" 
+                                            id="partner" 
+                                            name="option" 
+                                            value="PARTNER"
+                                            checked={selectedOption === 'PARTNER'}
+                                            onChange={handleOptionChange} />
+                                        <label style={styles} htmlFor="partner">Partner</label>
                                     </div>
 
                                     <input type="submit" value="Next" className="sign-btn" />
