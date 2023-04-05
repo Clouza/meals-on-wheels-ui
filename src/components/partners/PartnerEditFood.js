@@ -1,5 +1,5 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import '../../css/partnerAddFood.css'
+import '../../css/partner/partnerAddFood.css'
 import '../../css/landing.css'
 
 const PartnerEditFood = () => {

@@ -1,4 +1,4 @@
-import '../../css/partner.css'
+import '../../css/partner/partner.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useState } from 'react';
 import ProductCard from './ProductCard';
