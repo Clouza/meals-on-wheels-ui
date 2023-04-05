@@ -18,6 +18,9 @@ import ApplyDeliveryPage from './pages/rider/ApplyDeliveryPage';
 
 // default locale
 import lang from './Localization';
+import PartnersFoodListPage from './pages/ParnersFoodListPage';
+import PartnerAddFoodPage from './pages/partner/PartnerAddFoodPage';
+import PartnerEditFoodPage from './pages/partner/PartnerEditFoodPage';
 if (!sessionStorage.getItem("locale")) {
   sessionStorage.setItem("locale", "en");
   sessionStorage.setItem('language', 'English');
@@ -44,7 +47,10 @@ function App() {
 
       <Route path="/rider" element={<DashboardRiderPage/>}></Route>
       <Route path="/applydelivery" element={<ApplyDeliveryPage/>}></Route>
-      
+
+      <Route path="/partnerFoodList" element={<PartnersFoodListPage/>}></Route>
+      <Route path="/partnerAddFood" element={<PartnerAddFoodPage/>}></Route>
+      <Route path="/partnerEditFood" element={<PartnerEditFoodPage/>}></Route>
     </Routes>
   );
 }
