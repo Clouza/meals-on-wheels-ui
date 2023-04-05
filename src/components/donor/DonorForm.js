@@ -27,7 +27,7 @@ const DonorForm = () => {
 				<div className="mask py-4" style={maskStyle}>
 					<div className="container mainText py-4" style={maskFormStyle}>
 						<h2>Become a Donor</h2>
-						<form className="">
+						<form className="container">
 							<div className="row mb-3">
 								<div className="col-sm-6 mb-4">
 									<label className="form-label">Name</label>
