@@ -32,4 +32,4 @@ const PartnerProfile = () => {
 	)
 }
 
-export default PartnerProfile
+export default PartnerProfile 

@@ -22,6 +22,7 @@ import PartnersFoodListPage from './pages/partner/ParnersFoodListPage';
 import PartnerAddFoodPage from './pages/partner/PartnerAddFoodPage';
 import PartnerEditFoodPage from './pages/partner/PartnerEditFoodPage';
 import PartnerProfilePage from './pages/partner/PartnerProfilePage';
+import PartnerEditProfilePage from './pages/partner/PartnerEditProfilePage';
 if (!sessionStorage.getItem("locale")) {
   sessionStorage.setItem("locale", "en");
   sessionStorage.setItem('language', 'English');
@@ -53,6 +54,7 @@ function App() {
       <Route path="/partnerAddFood" element={<PartnerAddFoodPage/>}></Route>
       <Route path="/partnerEditFood" element={<PartnerEditFoodPage/>}></Route>
       <Route path='/partnerProfile' element={<PartnerProfilePage/>}></Route>
+      <Route path='/partnerUpdateProfile' element={<PartnerEditProfilePage/>}></Route>
     </Routes>
   );
 }
