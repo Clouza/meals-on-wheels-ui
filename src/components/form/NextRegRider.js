@@ -24,18 +24,18 @@ const NextRegRider = () => {
                                 </div>
                                 <div className="actual-form">
                                     <div className="input-wrap">
-                                        <label className="label">Name</label>
+                                        <label className="label">vehicle</label>
                                         <input
                                             type="text"
-                                            name="email"
-                                            placeholder="Email" minLength={4} className="input-field" autoComplete="off" required />
+                                            name="vehicle"
+                                            placeholder="vehicle" minLength={4} className="input-field" autoComplete="off" required />
                                     </div>
                                     <div className="input-wrap">
-                                        <label className="label">Password</label>
+                                        <label className="label">driving licensi</label>
                                         <input
-                                            type="password"
-                                            name="password"
-                                            placeholder="Password" minLength={4} className="input-field" autoComplete="off" required />
+                                            type="file"
+                                            name="driving licensi"
+                                            placeholder="driving licensi" className="input-field" autoComplete="off" required />
                                     </div>
                                     <input type="submit" value="Register" className="sign-btn" />
                                     <p className="text">

@@ -14,7 +14,7 @@ const MemberHomePage = () => {
     },[])
     return (
         <>
-            <NavbarMember />
+            <NavbarMember />  
             <Home />
             <SupportMember />
             <div data-aos='fade-up' data-aos-duration='2000' className="kotak">

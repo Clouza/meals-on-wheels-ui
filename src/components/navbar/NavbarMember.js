@@ -76,14 +76,14 @@ const NavbarMember = () => {
 
                 <div className={active}>
                     <ul className="menu flex">
-                        <li onClick={removeNavBar} className="listItem"> <a href="/">Home</a> </li>
-                        <li onClick={removeNavBar} className="listItem"> <a href="/donate">Donate </a> </li>
-                        <li onClick={removeNavBar} className="listItem"><a href="/about">About</a></li>
-                        <li onClick={removeNavBar} className="listItem"><a href="/contact">Contact</a>  </li>
-                        {/* <li onClick={removeNavBar} className="listItem"> {lang.navbar_home} </li>
-                        <li onClick={removeNavBar} className="listItem"> {lang.navbar_donate} </li>
-                        <li onClick={removeNavBar} className="listItem"> {lang.navbar_about} </li>
-                        <li onClick={removeNavBar} className="listItem"> {lang.navbar_contact} </li> */}
+                        <li onClick={removeNavBar} className="listItem"> <a href="/"> {lang.navbar_home}</a> </li>
+                        <li onClick={removeNavBar} className="listItem"> <a href="/donate">{lang.navbar_donate} </a> </li>
+                        <li onClick={removeNavBar} className="listItem"><a href="/about">{lang.navbar_about}</a></li>
+                        <li onClick={removeNavBar} className="listItem"><a href="/contact">{lang.navbar_contact}</a>  </li>
+                        <li onClick={removeNavBar} className="listItem">  </li>
+                        {/* <li onClick={removeNavBar} className="listItem">  </li>
+                        <li onClick={removeNavBar} className="listItem">  </li>
+                        <li onClick={removeNavBar} className="listItem">  </li> */}
                     </ul>
 
                     <Link to="/login">
