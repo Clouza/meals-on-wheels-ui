@@ -1,5 +1,7 @@
-import React from "react";
+import React,{ useState } from "react";
 import '../../css/form.css';
+import { useLocation,useNavigate } from 'react-router-dom';
+import Service from "../../service/Service";
 // Import Image
 import logo from '../../assets/logo.png';
 const NextRegRider = () => {
@@ -7,13 +9,49 @@ const NextRegRider = () => {
         marginRight: '10px',
         fontWeight: '500'
     };
+    // get data from form pervious input
+    const location = useLocation();
+    const loginCredentials = location.state.loginCredent;
+
+    // define input
+    const [vehicle, setVehicle] = useState("");
+    const [selectedFile, setSelectedFile] = useState(null);
+    const navigate = useNavigate();
+
+    // handle the input
+    const handleFileChange = event => {
+        setSelectedFile(event.target.files[0]);
+    };
+    const handleVehicleChange = event => {
+        setVehicle(event.target.value);
+    };
+
+    // handle form
+    const handleFormSubmit = (event) => {
+        event.preventDefault();
+
+        const formData = new FormData();
+        // this will fill the argument in spring boot method register in RiderController
+        formData.append('file', selectedFile);
+        formData.append('username', loginCredentials.username);
+        formData.append('vehicleName', vehicle);
+
+    
+        Service.uploadRiderData(formData,loginCredentials)
+        .then(res => {
+          // redirect page to login page
+          navigate('/login');
+        })
+        .catch(error => console.error(error));
+    };
+
     return (
         <>
             <main>
                 <div className="boxRegRider">
                     <div className="inner-box">
                         <div className="forms-wrap">
-                            <form onSubmit="" className="sign-in-form">
+                            <form onSubmit={handleFormSubmit} className="sign-in-form">
                                 <div className="logo">
                                     <img src={logo} alt="Marry meals" />
                                 </div>
@@ -24,18 +62,21 @@ const NextRegRider = () => {
                                 </div>
                                 <div className="actual-form">
                                     <div className="input-wrap">
-                                        <label className="label">vehicle</label>
+                                        <label className="label">Vehicle</label>
                                         <input
                                             type="text"
                                             name="vehicle"
+                                            value={vehicle}
+                                            onChange={handleVehicleChange}
                                             placeholder="vehicle" minLength={4} className="input-field" autoComplete="off" required />
                                     </div>
                                     <div className="input-wrap">
-                                        <label className="label">driving licensi</label>
+                                        <label className="label">Driving License</label>
                                         <input
                                             type="file"
-                                            name="driving licensi"
-                                            placeholder="driving licensi" className="input-field" autoComplete="off" required />
+                                            name="driving license"
+                                            onChange={handleFileChange}
+                                            placeholder="driving license" className="input-field" autoComplete="off" required />
                                     </div>
                                     <input type="submit" value="Register" className="sign-btn" />
                                     <p className="text">

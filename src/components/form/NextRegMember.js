@@ -12,7 +12,7 @@ const NextRegMember = () => {
     };
     // get data from form pervious input
     const location = useLocation();
-    const userData = location.state.userData;
+    const loginCredentials = location.state.loginCredent;
     
     // define message and file input
     const [message, setMessage] = useState("");
@@ -32,18 +32,12 @@ const NextRegMember = () => {
         event.preventDefault();
 
         const formData = new FormData();
-        // this will fill the argument in spring boot method handleFileUpload
+        // this will fill the argument in spring boot method register in MemberController
         formData.append('file', selectedFile);
-        formData.append('username', userData.username);
+        formData.append('username', loginCredentials.username);
         formData.append('message', message);
-
-        // to do the basic auth
-        const loginCredentials ={
-            username:userData.username,
-            password:userData.password
-        }
     
-        Service.uploadEvidence(formData,loginCredentials)
+        Service.uploadMemberEvidence(formData,loginCredentials)
           .then(res => {
             // redirect page to login page
             navigate('/login');
