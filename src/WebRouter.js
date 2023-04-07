@@ -23,8 +23,9 @@ import PartnerAddFoodPage from './pages/partner/PartnerAddFoodPage';
 import PartnerEditFoodPage from './pages/partner/PartnerEditFoodPage';
 import PartnerProfilePage from './pages/partner/PartnerProfilePage';
 import PartnerEditProfilePage from './pages/partner/PartnerEditProfilePage';
-import MemberProfilePage from './pages/member/MemberProfilePage';
+
 import MemberUpdateProfilePage from './pages/member/MemberUpdateProfilePage';
+import MemberProfilePage from './pages/member/MemberProfilePage';
 if (!sessionStorage.getItem("locale")) {
   sessionStorage.setItem("locale", "en");
   sessionStorage.setItem('language', 'English');
@@ -48,7 +49,7 @@ function App() {
       <Route path="/memberorder" element={<MemberOrderPage/>}></Route>
       <Route path="/member" element={<MemberHomePage/>}></Route>
       <Route path="/detailfood" element={<MemberDetailFoodPage/>}></Route>
-      <Route path="/memberProfile" element={<MemberProfilePage/>}></Route>
+      <Route path="/memberprofile" element={<MemberProfilePage/>}></Route>
       <Route path="/memberupdateprofile" element={<MemberUpdateProfilePage/>}></Route>
 
       <Route path="/rider" element={<DashboardRiderPage/>}></Route>
