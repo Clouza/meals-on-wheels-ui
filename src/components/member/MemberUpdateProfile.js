@@ -55,4 +55,4 @@ const MemberUpdateProfile = () => {
   )
 }
 
-export default MemberUpdateProfile
+export default MemberUpdateProfile;
