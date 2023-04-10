@@ -26,6 +26,14 @@ import PartnerEditProfilePage from './pages/partner/PartnerEditProfilePage';
 
 import MemberUpdateProfilePage from './pages/member/MemberUpdateProfilePage';
 import MemberProfilePage from './pages/member/MemberProfilePage';
+import { AdminDashboardPage } from './pages/admin/AdminDashboardPage';
+import { AdminRiderPage } from './pages/admin/AdminRiderPage';
+import { AdminMemberPage } from './pages/admin/AdminMemberPage';
+import  AdminPartnerPage from './pages/admin/AdminPartnerPage';
+import { AdminDonatorPage } from './pages/admin/AdminDonatorPage';
+
+
+
 if (!sessionStorage.getItem("locale")) {
   sessionStorage.setItem("locale", "en");
   sessionStorage.setItem('language', 'English');
@@ -60,6 +68,19 @@ function App() {
       <Route path="/partnerEditFood" element={<PartnerEditFoodPage/>}></Route>
       <Route path='/partnerProfile' element={<PartnerProfilePage/>}></Route>
       <Route path='/partnerUpdateProfile' element={<PartnerEditProfilePage/>}></Route>
+
+      <Route path='/admin' element={<AdminDashboardPage/>}></Route>
+      <Route path='/rideradmin' element={<AdminRiderPage/>}></Route>
+      <Route path='/memberadmin' element={<AdminMemberPage/>}></Route>
+      <Route path='/partneradmin' element={<AdminPartnerPage/>}></Route>
+      <Route path='/donatoradmin' element={<AdminDonatorPage/>}></Route>
+      {/* 
+      /memberadmin
+      /rideradmin
+      /partneradmin
+      /donatoradmin
+       */}
+      {/* <Route path='/ad' element={<Adddd/>}></Route> */}
     </Routes>
   );
 }
