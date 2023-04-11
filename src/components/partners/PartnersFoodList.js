@@ -1,48 +1,39 @@
 import '../../css/partner/partner.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { useState } from 'react';
-import ProductCard from './ProductCard';
+import PartnerSearchInventory from './PartnerSearchInventory';
+
+
 
 const PartnersFoodList = () => {
-	const [activeTab, setActiveTab] = useState(0);
-
-	const handleTabClick = (index) => {
-		setActiveTab(index);
-	}
   return(
 		<>
-			<div className='container partner'>
-				<div className='text-center'>
-					<h2>Your Food Posted</h2>
-				</div>
-				<div>
-					<ul className='nav nav-tabs mb-3' id='con1' role='tablist'>
-						<li className='nav-item' role='presentation'>
-							<a 
-								className={`nav-link ${activeTab === 0 ? 'active' : ''}`}
-								id='con1-tab-1'
-								data-mdb-toggle="tab"
-								href='#con1-tab-1'
-								role="tab"
-								aria-controls='con1-tab-1'
-								aria-selected={activeTab === 0}
-								onClick={() => handleTabClick(0)}
-							>
-								Current Food
-							</a>
-						</li>
-					</ul>
-					<div className='tab-content' id='con1-content'>
-						<div
-							className={`tab-pane fade show ${activeTab === 0 ? 'active' : ''}`}
-							id='con1-tab-1'
-							role='tabpanel1'
-							aria-labelledby='con1-tab-1'
-						>
-							<ProductCard/>
-						</div>
-					</div>
-				</div>
+			<PartnerSearchInventory/>
+				<div className='container p-0 text-center table-responsive'>
+				<table className='table'>
+					<thead>
+						<tr>
+							<th scope="col">NAME</th>
+							<th scope="col">RATE</th>
+							<th scope="col">STOCK</th>
+							<th scope="col">STATUS</th>
+							<th scope="col">CREATE DATE</th>
+							<th scope="col">ACTIONS</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td scope="row">Meals One</td>
+							<td>3.4</td>
+							<td>832</td>
+							<td>Approved</td>
+							<td>20/12/1945</td>
+							<td>
+								<button className='btn btn-primary mx-2 mb-1'>Update</button>
+								<button className='btn btn-warning mx-2 mb-1'>Remove</button>
+							</td>
+						</tr>
+					</tbody>
+				</table>
 			</div>
 		</>
 	)
