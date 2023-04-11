@@ -31,6 +31,7 @@ import { AdminRiderPage } from './pages/admin/AdminRiderPage';
 import { AdminMemberPage } from './pages/admin/AdminMemberPage';
 import  AdminPartnerPage from './pages/admin/AdminPartnerPage';
 import { AdminDonatorPage } from './pages/admin/AdminDonatorPage';
+import { AdminDashboard } from './components/adminComp/AdminDashboard';
 
 
 
@@ -74,6 +75,8 @@ function App() {
       <Route path='/memberadmin' element={<AdminMemberPage/>}></Route>
       <Route path='/partneradmin' element={<AdminPartnerPage/>}></Route>
       <Route path='/donatoradmin' element={<AdminDonatorPage/>}></Route>
+      <Route path='/ambasing' element={<AdminDashboard/>}></Route>
+
       {/* 
       /memberadmin
       /rideradmin

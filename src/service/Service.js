@@ -4,38 +4,37 @@ const API_BASE_URL = 'http://localhost:8080/';
 
 class Service{
 
+    // Used in RegisterComp.js
     register(data){
         return axios.post(API_BASE_URL+"registration",data)
     } 
-    uploadMemberEvidence(data, loginCredentials) {       
-        return axios.post(API_BASE_URL + "api/v1/member/upload-evidence", data,{
-            auth:{
-                username:loginCredentials.username,
-                password:loginCredentials.password
-            },
+    // Used in NextRegMember.js
+    uploadMemberEvidence(data) {       
+        return axios.post(API_BASE_URL + "upload-evidence", data,{
+            
             headers: { 
                 "Content-Type": "multipart/form-data" 
             }
     });
     }
-    uploadRiderData(data, loginCredentials) {       
-        return axios.post(API_BASE_URL + "api/v1/rider/upload-data", data,{
-            auth:{
-                username:loginCredentials.username,
-                password:loginCredentials.password
-            },
+
+    // Used in NextRegRider.js
+    uploadRiderData(data) {       
+        return axios.post(API_BASE_URL + "upload-data", data,{
+            
             headers: { 
                 "Content-Type": "multipart/form-data" 
             }
     });
     }
+
+    // Used in RegisterComp.js
     registerPartner(data,loginCredentials){
-        return axios.post(API_BASE_URL + "api/v1/partner/register", data,{
-            auth:{
-                username:loginCredentials.username,
-                password:loginCredentials.password
-            }
-    });
+        return axios.post(API_BASE_URL + "register-partner", data);
+    }
+
+    getUser(data){
+        return axios.get(API_BASE_URL+"users?role="+data)
     }
 
     

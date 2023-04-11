@@ -216,7 +216,9 @@ aside .sidebar a {
   /* width: 250px;
   height: 250px; */
 }
-
+a,span{
+  cursor: pointer;
+}
 .main .insights>div:hover {
   box-shadow: none;
 }
