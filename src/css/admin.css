@@ -343,7 +343,7 @@ a,span{
 
 .main .recent-list  table{
   margin-top: 25px;
-  width: 140%;
+  width: 110%;
   border-radius: 10px;
   text-align: center;
   padding: var(--card-padding);
@@ -354,6 +354,9 @@ a,span{
 }
 .main table thead th{
   padding-top: 10px;
+}
+.main table tbody{
+  overflow: scroll;
 }
 .main table tbody td{
   height: 2.8rem;

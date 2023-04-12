@@ -1,10 +1,11 @@
 import React from 'react'
-import { AdminFood } from '../../components/adminComp/AdminFood'
+import { AdminDashboard } from '../../components/adminComp/AdminDashboard'
+
 
 export const AdminDashboardPage = () => {
   return (
     <div>
-      <AdminFood/>
+      <AdminDashboard/>
     </div>
   )
 }

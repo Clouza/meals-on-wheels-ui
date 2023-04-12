@@ -76,7 +76,7 @@ const RegisterComp = () => {
                                 <div className="heading">
                                     <h2>Get Join</h2>
                                     <h6>Already have account?</h6>
-                                    <a href="/signup" className="toggle">Sign up</a>
+                                    <a href="/login" className="toggle">Login</a>
                                 </div>
                                 <div className="actual-form">
                                     <div className="input-wrap">
