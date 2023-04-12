@@ -2,8 +2,13 @@ import '../../css/donate.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../../css/landing.css';
 import visa from "../../assets/visa.png"
+import { useEffect } from 'react';
+import Aos from 'aos';
 
 const DonorForm = () => {
+	useEffect(() => {
+		Aos.init({duration: 2000})
+	})
 
 	const bgImage = {
 		backgroundImage: "url('https://images.unsplash.com/photo-1532629345422-7515f3d16bb6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8ZG9uYXRlfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60')",
@@ -22,11 +27,11 @@ const DonorForm = () => {
 	};
 
 	return (
-		<div className="container-flex donate" >
+		<div className="container-flex donate" data-aos='fade-up' data-aos-duration='1000'>
 			<div className="bg-image background justify-content-center" style={bgImage}>
 				<div className="mask py-4" style={maskStyle}>
 					<div className="container mainText py-4" style={maskFormStyle}>
-						<h2>Become a Donor</h2>
+						<h2 data-aos='fade-up' data-aos-duration='2500'>Become a Donor</h2>
 						<form className="container">
 							<div className="row mb-3">
 								<div className="col-sm-6 mb-4">

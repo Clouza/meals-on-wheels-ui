@@ -60,7 +60,7 @@
 }
 
 .boxx {
-    position: relative;
+   
     display: grid;
     grid-template-columns: 2fr 1fr;
     grid-template-rows: 5fr 4fr;
@@ -178,6 +178,7 @@
     .contactUss{
        padding: 150px 20px; 
     }
+    
     .boxx {
         display: grid;
         grid-template-columns: 1fr;

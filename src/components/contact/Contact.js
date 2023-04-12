@@ -1,5 +1,6 @@
 import React from "react";
 import '../../css/contact.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 // import icon
 import { BiMap } from 'react-icons/bi';
@@ -19,45 +20,33 @@ const Contact = () => {
                 <div className="boxx">
                     <div className="contactt form">
                         <h3>Send a message</h3>
-                        <form>
-                            <div className="formBox">
-                                <div className="row50">
-                                    <div className="inputBox">
-                                        <span>First Name</span>
-                                        <input type="text" placeholder="Siti"></input>
-                                    </div>
-
-                                    <div className="inputBox">
-                                        <span>Last Name</span>
-                                        <input type="text" placeholder="aye"></input>
-                                    </div>
+                        <form className="container-fluid p-2 m-0 mb-4" style={{maxWidth: '800px'}}>
+                            <div className="row " >
+                                <div className="col">
+                                    <label className="form-label">First Name</label>
+                                    <input className="form-control" required placeholder="Enter your first name" type="text"/>
                                 </div>
-
-                                <div className="row50">
-                                    <div className="inputBox">
-                                        <span>Email</span>
-                                        <input type="text" placeholder="Siti@gmail.com"></input>
-                                    </div>
-
-                                    <div className="inputBox">
-                                        <span>Phone Number</span>
-                                        <input type="text" placeholder="+62 21312343"></input>
-                                    </div>
-                                </div>
-
-                                <div className="row100">
-                                    <div className="inputBox">
-                                        <span>Message</span>
-                                        <textarea placeholder="write your message here"></textarea>
-                                    </div>
-                                </div>
-
-                                <div className="row100">
-                                    <div className="inputBox">
-                                        <input type="submit" value="send"></input>
-                                    </div>
+                                <div className="col">
+                                    <label className="form-label">Last Name</label>
+                                    <input className="form-control" required placeholder="Enter your last name" type="text"/>
                                 </div>
                             </div>
+                            <div className="row " >
+                                <div className="col">
+                                    <label className="form-label">Email</label>
+                                    <input className="form-control" required placeholder="@example.com" type="email"/>
+                                </div>
+                                <div className="col">
+                                    <label className="form-label">Phone Number</label>
+                                    <input className="form-control" required placeholder="Enter your phone number" type="text"/>
+                                </div>
+                            </div>
+                            <div>
+                                <label className="form-label">Message</label>
+                                <textarea className="form-control" rows="5" placeholder="Enter your message"></textarea>
+                            </div>
+                            <button className="btn btn-primary">Send</button>
+                           
                         </form>
                     </div>
                     {/* info */}
