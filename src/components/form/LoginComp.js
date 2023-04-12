@@ -1,10 +1,12 @@
-import React from "react";
+import React,{useState} from "react";
 import '../../css/form.css';
+import { useNavigate } from 'react-router-dom';
 import { BsFacebook } from 'react-icons/bs';
 import { SlSocialGoogle } from 'react-icons/sl';
 import { FiTwitter } from 'react-icons/fi';
 // Import Image
 import logo from '../../assets/logo.png';
+import Service from "../../service/Service";
 const colorFacebook ={
     background:'#1877f2',
     fontSize: '20px', 
@@ -31,13 +33,35 @@ const LoginComp = () => {
         marginRight: '10px',
         fontWeight: '500'
     };
+    const [username, setUsername] = useState("");
+    const [password, setPassword] = useState("");
+    const navigate = useNavigate();
+
+    const handleUsernameChange = event => {
+        setUsername(event.target.value);
+    };
+    const handlePasswordChange = event => {
+        setPassword(event.target.value);
+    };
+    const handleFormSubmit =(event)=>{
+        event.preventDefault();
+        const data = {
+            username:username,
+            password:password
+        }
+        Service.login(data).then(res=>{
+            sessionStorage.setItem('token', res.data.response);
+            navigate("/");
+        })
+    }
+
     return (
         <>
             <main>
                 <div className="boxlogin">
                     <div className="inner-box">
                         <div className="forms-wrap">
-                            <form onSubmit="" className="sign-in-form">
+                            <form onSubmit={handleFormSubmit} className="sign-in-form">
                                 <div className="logo">
                                     <img src={logo} alt="Marry meals" />
                                 </div>
@@ -48,10 +72,12 @@ const LoginComp = () => {
                                 </div>
                                 <div className="actual-form">
                                     <div className="input-wrap">
-                                        <label className="label">Name</label>
+                                        <label className="label">Username</label>
                                         <input
                                             type="text"
                                             name="email"
+                                            value={username}
+                                            onChange={handleUsernameChange}
                                             placeholder="Email" minLength={4} className="input-field" autoComplete="off" required />
                                     </div>
                                     <div className="input-wrap">
@@ -59,6 +85,8 @@ const LoginComp = () => {
                                         <input
                                             type="password"
                                             name="password"
+                                            value={password}
+                                            onChange={handlePasswordChange}
                                             placeholder="Password" minLength={4} className="input-field" autoComplete="off" required />
                                     </div>
                                     <input type="submit" value="Login" className="sign-btn" />

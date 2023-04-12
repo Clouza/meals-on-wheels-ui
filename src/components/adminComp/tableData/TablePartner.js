@@ -30,10 +30,11 @@ export const TablePartner = () => {
                 <thead>
                   <tr>
                     <th>Partner Name</th>
-                    <th>Address</th>
-                    <th>Phone Number</th>
                     <th>Age</th>
+                    <th>Phone Number</th>
+                    <th>Address</th>
                     <th>Join At</th>
+                    <th>Action</th>
                   </tr>
                 </thead>
                 <tbody>

@@ -31,8 +31,9 @@ export const TableMember = () => {
                     <tr>
                       <th>Member Name</th>
                       <th>Age</th>
-                      <th>Address</th>
                       <th>Phone Number</th>
+                      <th>Address</th>
+                      <th>Action</th>
                     </tr>
                   </thead>
                   <tbody>

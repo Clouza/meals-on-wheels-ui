@@ -202,7 +202,7 @@ export const AdminDashboard = () => {
             {/* =====================IF THE RIDER ACTIVE START*/}
             {activeLink === 'rider' && (
               <div>
-                <TableRider/>
+                <TableRider name={activeLink.charAt(0).toUpperCase() + activeLink.slice(1)}/>
               </div>
             )}
             {/* =====================IF THE RIDER ACTIVE END */}

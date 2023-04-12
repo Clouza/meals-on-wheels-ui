@@ -343,7 +343,7 @@ a,span{
 
 .main .recent-list  table{
   margin-top: 25px;
-  width: 110%;
+  width: 100%;
   border-radius: 10px;
   text-align: center;
   padding: var(--card-padding);

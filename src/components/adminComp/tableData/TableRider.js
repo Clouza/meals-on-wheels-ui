@@ -1,4 +1,5 @@
-import React from 'react';
+import React,{useState,useEffect} from 'react';
+import Service from '../../../service/Service';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 
@@ -10,6 +11,18 @@ export const TableRider = () => {
   const color = {
     color: 'blue'
   }
+  const [notApprovedUsers, setNotApprovedUsers] = useState([]);
+  const [approvedUsers, setApprovedUsers] = useState([]);
+
+  useEffect(() => {
+    Service.getNotApprovedRider()
+      .then(response => setNotApprovedUsers(response.data))
+      .catch(error => console.log(error));
+    Service.getApprovedRider()
+      .then(response => setApprovedUsers(response.data))
+      .catch(error => console.log(error));
+  }, []);
+
   return (
     <div>
       <h2>Rider Side</h2>
@@ -31,17 +44,24 @@ export const TableRider = () => {
               <tr>
                 <th>Rider Name</th>
                 <th>Age</th>
-                <th>Address</th>
                 <th>Phone Number</th>
+                <th>Address</th>
+                <th>Action</th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>Semur jengkol</td>
-                <td>20 y.o</td>
-                <td>Block 3 number 4</td>
-                <td>3242342342334</td>
+            {approvedUsers.map((au, index) => (
+              <tr key={index}>
+                <td>{au.user.userDetails.name}</td>
+                <td>{au.user.userDetails.age}</td>
+                <td>{au.user.userDetails.phoneNumber}</td>
+                <td>{au.user.userDetails.address}</td>
+                <td>
+                  <button style={styles} className='btn btn-success'>Edit</button>
+                  <button style={styles} className='btn btn-danger'>Update</button>
+                </td>
               </tr>
+            ))}
             </tbody>
           </table>
         </div>
@@ -55,21 +75,25 @@ export const TableRider = () => {
               <tr>
                 <th>Rider Name</th>
                 <th>Email</th>
-                <th>Vihicle Name</th>
-                <th>Driving licensi</th>
+                <th>Vehicle Name</th>
+                <th>Driving License</th>
+                <th>Action</th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>Jaka Sembung</td>
-                <td>sembung@gmail.com</td>
-                <td>Zx25r</td>
-                <td style={color} data-bs-toggle="modal" data-bs-target="#ModalRider">stnk.jpg</td>
+            {notApprovedUsers.map((nau, index) => (
+              <tr key={index}>
+                <td>{nau.user.username}</td>
+                <td>{nau.user.email}</td>
+                <td>{nau.vehicle}</td>
+                <td>{nau.drivingLicense}</td>
                 <td>
                   <button style={styles} className='btn btn-success'>Approve</button>
                   <button style={styles} className='btn btn-danger'>Ignore</button>
                 </td>
               </tr>
+            ))}
+              
             </tbody>
           </table>
         </div>
