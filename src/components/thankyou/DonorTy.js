@@ -6,9 +6,10 @@ import tyImage from '../../assets/donateThankYou.png';
 const DonorTy = () => {
   return(
 		<>
+		<br /><br /><br />
 			<div className="row container donateTy">
 				<div className='col-sm-6 d-flex align-items-center'>
-					<div className='box'>
+					<div className=''>
 						<h1 style={{fontSize: '6vw'}}>THANK YOU</h1>
 						<p style={{color: 'black', fontWeight:'bold'}}>Thank you for donating to us</p>
 						<a href='#'>Back to sigin</a>
@@ -18,6 +19,7 @@ const DonorTy = () => {
 					<img src={tyImage} className="img-fluid text-center" style={{objectFit: 'cover'}}/>
 				</div>
 			</div>
+			<br /><br /><br />
 		</>
 	)
 }
