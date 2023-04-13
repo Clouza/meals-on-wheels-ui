@@ -4,6 +4,7 @@ import NavbarMember from "../../components/navbar/NavbarMember";
 import Subscribe from "../../components/subscribe/Subscribe";
 import Home from "../../components/home/Home";
 import RiderHeading from "../../components/support/RiderHeading";
+import '../../css/longCard.css';
 
 // Style on longcard.css
 const DashboardRiderPage = () => {
