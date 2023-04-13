@@ -37,13 +37,14 @@ const NextRegMember = () => {
         formData.append('username', loginCredentials.username);
         formData.append('message', message);
     
-        Service.uploadMemberEvidence(formData,loginCredentials)
+        Service.registerMember(formData,loginCredentials)
           .then(res => {
             // redirect page to login page
             navigate('/login');
           })
           .catch(error => console.error(error));
     };
+    
 
     return (
         <>

@@ -2,6 +2,7 @@ import React,{useState,useEffect} from 'react';
 import Service from '../../../service/Service';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
+import { useNavigate } from 'react-router-dom';
 
 export const TableRider = () => {
   const styles = {
@@ -13,15 +14,53 @@ export const TableRider = () => {
   }
   const [notApprovedUsers, setNotApprovedUsers] = useState([]);
   const [approvedUsers, setApprovedUsers] = useState([]);
+  const navigate = useNavigate();
+  
+  const fetchData = async () => {
+    try {
+      {/* Change the Service.getRiders() depends on what table it is. ex : table member = Service.getMembers() */}
+      {/* Delete this comment if u already change it or read this. there is another not in the bottom please take a look */}
+      const [approved, notApproved] = await Promise.all([
+        Service.getRiders({ approved: true }),
+        Service.getRiders({ approved: false })
+      ]);
+      setApprovedUsers(approved.data);
+      setNotApprovedUsers(notApproved.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   useEffect(() => {
-    Service.getNotApprovedRider()
-      .then(response => setNotApprovedUsers(response.data))
-      .catch(error => console.log(error));
-    Service.getApprovedRider()
-      .then(response => setApprovedUsers(response.data))
-      .catch(error => console.log(error));
+    fetchData();
   }, []);
+
+  const handleApprove = async (id, role) => {
+    try {
+      const data = { id, type: role };
+      await Service.approveUser(data);
+      fetchData();
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const handleDelete = async (id) => {
+    try {
+      await Service.deleteUser(id);
+      fetchData();
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  const handleEdit = async (user) =>{
+    try {
+      navigate('/memberupdateprofile', { state: { userDetail: user } });
+    } catch (error) {
+      console.error(error);
+    }
+  }
 
   return (
     <div>
@@ -43,6 +82,7 @@ export const TableRider = () => {
             <thead>
               <tr>
                 <th>Rider Name</th>
+                <th>Email</th>
                 <th>Age</th>
                 <th>Phone Number</th>
                 <th>Address</th>
@@ -53,12 +93,15 @@ export const TableRider = () => {
             {approvedUsers.map((au, index) => (
               <tr key={index}>
                 <td>{au.user.userDetails.name}</td>
+                <td>{au.user.email}</td>
                 <td>{au.user.userDetails.age}</td>
                 <td>{au.user.userDetails.phoneNumber}</td>
                 <td>{au.user.userDetails.address}</td>
                 <td>
-                  <button style={styles} className='btn btn-success'>Edit</button>
-                  <button style={styles} className='btn btn-danger'>Update</button>
+                  <button style={styles} className='btn btn-success'
+                  onClick={() => handleEdit(au.user)}>Edit</button>
+                  <button style={styles} className='btn btn-danger' 
+                  onClick={() => handleDelete(au.user.userId)}>Delete</button>
                 </td>
               </tr>
             ))}
@@ -88,8 +131,14 @@ export const TableRider = () => {
                 <td>{nau.vehicle}</td>
                 <td>{nau.drivingLicense}</td>
                 <td>
-                  <button style={styles} className='btn btn-success'>Approve</button>
-                  <button style={styles} className='btn btn-danger'>Ignore</button>
+                  {/* Change the nau.riderId depends on what table it is. ex : table member = nau.memberId */}
+                  {/* Delete this comment if u already change it or read this */}
+                  <button style={styles} className='btn btn-success' 
+                  onClick={() => handleApprove(nau.riderId, nau.user.role.toLowerCase())}>
+                    Approve
+                  </button>
+                  <button style={styles} className='btn btn-danger' 
+                  onClick={() => handleDelete(nau.user.userId)}>Ignore</button>
                 </td>
               </tr>
             ))}

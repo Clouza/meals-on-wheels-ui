@@ -27,7 +27,7 @@ const MemberUpdateProfile = () => {
             <div className='row'>
               <div className='col-sm-6 mb-4'>
                 <label className='form-label'>Name</label>
-                <input className='form-control' type='text' required/>
+                <input className='form-control' type='text'  required/>
               </div>
               <div className='col-sm-6 mb-4'>
                 <label className='form-label'>Age</label>

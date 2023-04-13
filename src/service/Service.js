@@ -6,61 +6,130 @@ class Service{
     // ----------------------------------------------------------------Login And Register---------------------------------------------------------------------
 
     // Used in RegisterComp.js
-    register(data){
-        return axios.post(API_BASE_URL+"registration",data)
+    async register(data){
+        try {
+            return await axios.post(API_BASE_URL+"registration",data)
+            
+        } catch (error) {
+            console.error(error);
+            throw error;
+        }
     } 
     // Used in NextRegMember.js
-    uploadMemberEvidence(data) {       
-        return axios.post(API_BASE_URL + "upload-evidence", data,{
-            headers: { 
-                "Content-Type": "multipart/form-data" 
-            }
-    });
+    async registerMember(data) {       
+        try {
+            return await axios.post(API_BASE_URL + "upload-evidence", data,{
+                headers: { 
+                    "Content-Type": "multipart/form-data" 
+                }
+            });
+            
+        } catch (error) {
+            console.error(error);
+            throw error;
+        }
     }
 
     // Used in NextRegRider.js
-    uploadRiderData(data) {       
-        return axios.post(API_BASE_URL + "upload-data", data,{
-            headers: { 
-                "Content-Type": "multipart/form-data" 
-            }
-    });
+    async registerRider(data) {       
+        try {
+            return await axios.post(API_BASE_URL + "upload-data", data,{
+                headers: { 
+                    "Content-Type": "multipart/form-data" 
+                }
+            });
+            
+        } catch (error) {
+            console.error(error);
+            throw error;
+        }
     }
 
     // Used in RegisterComp.js
-    registerPartner(data){
-        return axios.post(API_BASE_URL + "register-partner", data);
+    async registerPartner(data){
+        try {
+            return await axios.post(API_BASE_URL + "register-partner", data);
+            
+        } catch (error) {
+            console.error(error);
+            throw error;
+        }
     }
 
     // Used in LoginComp.js
-    login(data){
-        return axios.post(API_BASE_URL+"login",data);
+    async login(data) {
+        try {
+            return await axios.post(API_BASE_URL + "login", data);
+            
+        } catch (error) {
+            console.error(error);
+            throw error;
+        }
     }
 
     // ----------------------------------------------------------------Administrator Dasboard---------------------------------------------------------------------
     
-    getNotApprovedRider(){
-    // Get the token from the session storage
-    const token = sessionStorage.getItem('token');
-
-    // Use the token in an API request
-    return axios.get(API_BASE_URL + "api/v1/admin/not-approved-riders", {
-        headers: {
-            'Authorization': `Bearer ${token}`
+    async authorizedRequest(endpoint, data) {
+        const token = sessionStorage.getItem('token');
+        if (!token) {
+            throw new Error('Token not found in session storage');
         }
-    })
-    }
-    getApprovedRider(){
-    // Get the token from the session storage
-    const token = sessionStorage.getItem('token');
-
-    // Use the token in an API request
-    return axios.get(API_BASE_URL + "api/v1/admin/approved-riders", {
-        headers: {
+        
+        const response = await axios.post(endpoint, data, {
+            headers: {
             'Authorization': `Bearer ${token}`
-        }
-    })
+            }
+        });
+    
+        return response;
     }
+    
+    async getRiders(data) {
+        return await this.authorizedRequest(API_BASE_URL + "api/v1/admin/get-riders", data);
+    }
+    
+    async getMembers(data) {
+        return await this.authorizedRequest(API_BASE_URL + "api/v1/admin/get-members", data);
+    }
+    
+    async getPartners(data) {
+        return await this.authorizedRequest(API_BASE_URL + "api/v1/admin/get-partners", data);
+    }
+    
+    async getFoods(data) {
+        return await this.authorizedRequest(API_BASE_URL + "api/v1/admin/get-meals", data);
+    }
+    
+    async getDonators() {
+        return await this.authorizedRequest(API_BASE_URL + "api/v1/admin/get-donators");
+    }
+
+    async approveUser(data){
+        const token = sessionStorage.getItem('token');
+        if (!token) {
+            throw new Error('Token not found in session storage');
+        }
+        return await axios.put(API_BASE_URL+"api/v1/admin/approve",data,{
+            headers: {
+            'Authorization': `Bearer ${token}`
+            }
+        })
+    }
+
+    async deleteUser(id){
+        const token = sessionStorage.getItem('token');
+        if (!token) {
+            throw new Error('Token not found in session storage');
+        }
+        return await axios.delete(API_BASE_URL+"api/v1/admin/delete/"+id,{
+            headers: {
+            'Authorization': `Bearer ${token}`
+            }
+        })
+    }
+    
+      
+    
 }
   
 export default new Service();
