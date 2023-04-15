@@ -40,21 +40,17 @@ const RegisterComp = () => {
             role:selectedOption
         }
         const loginCredentials={
-            username:username,
-            password:password
+            username:username
         }
-        const formData = new FormData();
-        formData.append('username',username);
+        
         Service.register(data)
         .then(response => {
-            // redirect page based what user select
-            // { state: { userData: data } } this is for sending current input value to next page
             if (selectedOption === 'RIDER') {
                 navigate('/regrider', { state: { loginCredent: loginCredentials } });
             } else if (selectedOption === 'MEMBER') {
                 navigate('/regmember', { state: { loginCredent: loginCredentials } });
             } else {
-                Service.registerPartner(formData,loginCredentials).then(res=>{
+                Service.registerPartner({username},loginCredentials).then(res=>{
                     navigate('/login');
                 })
             }

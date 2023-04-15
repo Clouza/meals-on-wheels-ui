@@ -31,13 +31,12 @@ const NextRegRider = () => {
         event.preventDefault();
 
         const formData = new FormData();
-        // this will fill the argument in spring boot method register in RiderController
         formData.append('file', selectedFile);
         formData.append('username', loginCredentials.username);
-        formData.append('vehicleName', vehicle);
+        formData.append('text', vehicle);
 
     
-        Service.registerRider(formData,loginCredentials)
+        Service.registerRider(formData)
         .then(res => {
           // redirect page to login page
           navigate('/login');

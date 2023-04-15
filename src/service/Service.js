@@ -18,7 +18,7 @@ class Service{
     // Used in NextRegMember.js
     async registerMember(data) {       
         try {
-            return await axios.post(API_BASE_URL + "upload-evidence", data,{
+            return await axios.post(API_BASE_URL + "upload/MEMBER", data,{
                 headers: { 
                     "Content-Type": "multipart/form-data" 
                 }
@@ -33,7 +33,7 @@ class Service{
     // Used in NextRegRider.js
     async registerRider(data) {       
         try {
-            return await axios.post(API_BASE_URL + "upload-data", data,{
+            return await axios.post(API_BASE_URL + "upload/RIDER", data,{
                 headers: { 
                     "Content-Type": "multipart/form-data" 
                 }
@@ -128,8 +128,19 @@ class Service{
         })
     }
     
-      
+    // ----------------------------------------------------------------Administrator Dasboard---------------------------------------------------------------------
     
+    async addFood(data){
+        const token = sessionStorage.getItem('token');
+        if (!token) {
+            throw new Error('Token not found in session storage');
+        }
+        return await axios.post(API_BASE_URL+"api/v1/partner/meals",data,{
+            headers: {
+            'Authorization': `Bearer ${token}`
+            }
+        })
+    }
 }
   
 export default new Service();

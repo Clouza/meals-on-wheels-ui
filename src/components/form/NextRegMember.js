@@ -13,7 +13,7 @@ const NextRegMember = () => {
     // get data from form pervious input
     const location = useLocation();
     const loginCredentials = location.state.loginCredent;
-    
+
     // define message and file input
     const [message, setMessage] = useState("");
     const [selectedFile, setSelectedFile] = useState(null);
@@ -32,12 +32,11 @@ const NextRegMember = () => {
         event.preventDefault();
 
         const formData = new FormData();
-        // this will fill the argument in spring boot method register in MemberController
         formData.append('file', selectedFile);
         formData.append('username', loginCredentials.username);
-        formData.append('message', message);
+        formData.append('text', message);
     
-        Service.registerMember(formData,loginCredentials)
+        Service.registerMember(formData)
           .then(res => {
             // redirect page to login page
             navigate('/login');
