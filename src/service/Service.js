@@ -109,11 +109,13 @@ class Service{
         if (!token) {
             throw new Error('Token not found in session storage');
         }
-        return await axios.put(API_BASE_URL+"api/v1/admin/approve",data,{
+        
+        const response = await axios.put(API_BASE_URL+"api/v1/admin/approve", data, {
             headers: {
             'Authorization': `Bearer ${token}`
             }
-        })
+        });
+        return response;
     }
 
     async deleteUser(id){
@@ -121,25 +123,68 @@ class Service{
         if (!token) {
             throw new Error('Token not found in session storage');
         }
-        return await axios.delete(API_BASE_URL+"api/v1/admin/delete/"+id,{
+        
+        const response = await axios.delete(API_BASE_URL+"api/v1/admin/delete/"+id, {
             headers: {
             'Authorization': `Bearer ${token}`
             }
-        })
+        });
+        return response;
     }
     
-    // ----------------------------------------------------------------Administrator Dasboard---------------------------------------------------------------------
+    // ----------------------------------------------------------------Partner Side---------------------------------------------------------------------
     
     async addFood(data){
+        return await this.authorizedRequest(API_BASE_URL + "api/v1/partners/meals",data);
+    }
+
+     // ----------------------------------------------------------------Rider Side---------------------------------------------------------------------
+     
+     async handleOrder(data){
         const token = sessionStorage.getItem('token');
         if (!token) {
             throw new Error('Token not found in session storage');
         }
-        return await axios.post(API_BASE_URL+"api/v1/partner/meals",data,{
+        
+        const response = await axios.put(API_BASE_URL+"api/v1/rider/handle-order", data, {
             headers: {
             'Authorization': `Bearer ${token}`
             }
-        })
+        });
+        return response;
+     }
+     async getOrders(status){
+        const token = sessionStorage.getItem('token');
+        if (!token) {
+            throw new Error('Token not found in session storage');
+        }
+        
+        const response = await axios.get(API_BASE_URL+"api/v1/rider/get-order"+ status, {
+            headers: {
+            'Authorization': `Bearer ${token}`
+            }
+        });
+        return response;
+     }
+     
+     
+     // ----------------------------------------------------------------Member Side---------------------------------------------------------------------
+    async orderMeals(data){
+        return await this.authorizedRequest(API_BASE_URL + "api/v1/members/order-meals",data);
+    }
+
+    async giveRatings(data) {
+        const token = sessionStorage.getItem('token');
+        if (!token) {
+            throw new Error('Token not found in session storage');
+        }
+        
+        const response = await axios.put(API_BASE_URL+"api/v1/members/rate-service", data, {
+            headers: {
+            'Authorization': `Bearer ${token}`
+            }
+        });
+        return response;
     }
 }
   
