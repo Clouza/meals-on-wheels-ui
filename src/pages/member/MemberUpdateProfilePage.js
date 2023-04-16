@@ -2,6 +2,7 @@ import Footer from "../../components/footer/Footer"
 import MemberUpdateProfile from "../../components/member/MemberUpdateProfile"
 import NavbarMember from "../../components/navbar/NavbarMember"
 import { useLocation,useNavigate } from 'react-router-dom';
+import Service from "../../service/Service";
 
 const MemberUpdateProfilePage = () => {
   // get data from form pervious input

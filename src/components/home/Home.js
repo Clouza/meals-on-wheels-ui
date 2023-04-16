@@ -16,7 +16,7 @@ const Home = () => {
     return (
         <div className="home flex conainer">
             <div className="mainText">
-                <h2 data-aos='fade-up' data-aos-duration='2500' >With MerryMeals We Share And Help Others And Help Others </h2>
+                <h2 data-aos='fade-up' data-aos-duration='2500' >With MerryMeals We Share And Help People, share happiness together </h2>
             </div>
 
             <div data-aos='fade-up' data-aos-duration='1500' className="homeImages flex">

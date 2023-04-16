@@ -196,6 +196,7 @@ aside .sidebar a {
 }
 
 .main .insights {
+  margin-top: 45px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 1.6rem;
@@ -393,7 +394,7 @@ a,span{
 
 .right .recent-updates{
   /* background-color: red; */
-  margin-top: -70px;
+  margin-top: 0px;
 }
 .right .recent-updates h2{
   margin-bottom: 0.8rem;

@@ -5,6 +5,7 @@ import { MdOutlineRememberMe } from 'react-icons/md';
 import { IoMdAddCircle } from 'react-icons/io';
 import { FaPeopleCarry, FaDonate, FaMotorcycle } from 'react-icons/fa';
 import { AiOutlineLogout } from 'react-icons/ai';
+import { BsSearch } from 'react-icons/bs';
 import '../../css/admin.css';
 import { TableFood } from './tableData/TableFood';
 import { TableMember } from './tableData/TableMember';
@@ -95,10 +96,10 @@ export const AdminDashboard = () => {
           {/* ==========================INFO TOP START=========================== */}
           <div className="insights">
             <div className="sales">
-              <span className="material-icon"><AiOutlineLogout /></span>
+              <span className="material-icon"><FaPeopleCarry /></span>
               <div className="middle">
                 <div className="left">
-                  <h3>Total Partner</h3>
+                  <h3>Total Partners</h3>
                   <h1>234</h1>
                 </div>
                 <div className="progress">
@@ -106,7 +107,7 @@ export const AdminDashboard = () => {
                     <circle cx="38" cy="38" r="36"></circle>
                   </svg>
                   <div className="number">
-                    <p>90%</p>
+                    <p>80%</p>
                   </div>
                 </div>
               </div>
@@ -115,10 +116,10 @@ export const AdminDashboard = () => {
 
             {/* ---------END OF SALES---------- */}
             <div className="sales">
-              <span className="material-icon"><AiOutlineLogout /></span>
+              <span className="material-icon"><MdOutlineRememberMe /></span>
               <div className="middle">
                 <div className="left">
-                  <h3>Total Partner</h3>
+                  <h3>Total Members</h3>
                   <h1>234</h1>
                 </div>
                 <div className="progress">
@@ -126,7 +127,7 @@ export const AdminDashboard = () => {
                     <circle cx="38" cy="38" r="36"></circle>
                   </svg>
                   <div className="number">
-                    <p>90%</p>
+                    <p>70%</p>
                   </div>
                 </div>
               </div>
@@ -135,10 +136,10 @@ export const AdminDashboard = () => {
 
             {/* ---------END OF SALES---------- */}
             <div className="sales">
-              <span className="material-icon"><AiOutlineLogout /></span>
+              <span className="material-icon"><FaMotorcycle /></span>
               <div className="middle">
                 <div className="left">
-                  <h3>Total Partner</h3>
+                  <h3>Total Riders</h3>
                   <h1>234</h1>
                 </div>
                 <div className="progress">
@@ -168,7 +169,7 @@ export const AdminDashboard = () => {
           <div className="search">
             <input type="text" className="searchTerm" placeholder="What are you looking for?" />
             <button type="submit" className="searchButton">
-              <AiOutlineLogout />
+              <BsSearch />
             </button>
           </div>
           {/* ====================SEARCH END=================================== */}
@@ -301,7 +302,7 @@ export const AdminDashboard = () => {
           {/* End of top */}
 
           <div className="recent-updates">
-            <h2>Recents Updates</h2>
+            {/* <h2>Recents Updates</h2> */}
             <div className="updates">
               <div className="update">
                 <div className="profile-photo">

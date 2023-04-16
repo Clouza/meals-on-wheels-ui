@@ -43,8 +43,6 @@ const RegisterComp = () => {
             username:username,
             password:password
         }
-        const formData = new FormData();
-        formData.append('username',username);
         Service.register(data)
         .then(response => {
             // redirect page based what user select
@@ -54,7 +52,7 @@ const RegisterComp = () => {
             } else if (selectedOption === 'MEMBER') {
                 navigate('/regmember', { state: { loginCredent: loginCredentials } });
             } else {
-                Service.registerPartner(formData,loginCredentials).then(res=>{
+                Service.registerPartner({username},loginCredentials).then(res=>{
                     navigate('/login');
                 })
             }
