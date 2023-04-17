@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext,useEffect } from "react";
 import '../../css/landing.css';
 import { Link, useNavigate } from 'react-router-dom';
 import AuthContext from "../../authContext/auth-context";
@@ -28,6 +28,18 @@ const NavbarMember = () => {
         navigate("/login");
     };
     // ===========================
+    const [role, setRole] = useState(null);
+
+    // Add this useEffect hook to fetch user role after login
+    useEffect(() => {
+        if (sessionStorage.getItem('token')) {
+            Service.getUser().then(response => {
+                setRole(response.data.role);
+            });
+        }
+    }, []);
+
+    // ==========================
 
     const styles = {
         marginRight: '10px',
@@ -107,11 +119,48 @@ const NavbarMember = () => {
                         <li onClick={removeNavBar} className="listItem"> <a href="/donate">{lang.navbar_donate} </a> </li>
                         <li onClick={removeNavBar} className="listItem"><a href="/about">{lang.navbar_about}</a></li>
                         <li onClick={removeNavBar} className="listItem"><a href="/contact">{lang.navbar_contact}</a>  </li>
-                        <li onClick={removeNavBar} className="listItem">  </li>
+                        {/* <li onClick={removeNavBar} className="listItem">  </li>
                         {authCtx.role === 'MEMBER' && <a href="/member">Member</a>}
                         {authCtx.role === 'RIDER' && <a href="/rider">Rider</a>}
                         {authCtx.role === 'PARTNER' && <a href="/partner">Partner</a>}
-                        {authCtx.role === 'ADMIN' && <a href="/admin">Admin</a>}
+                        {authCtx.role === 'ADMIN' && <a href="/admin">Admin</a>} */}
+                        {role === 'MEMBER' && (
+                            <>
+                            <li onClick={removeNavBar} className="listItem">
+                                <a href="/member">Food</a>
+                            </li>
+                            <li onClick={removeNavBar} className="listItem">
+                                <a href="/memberorder">My Order</a>
+                            </li>
+                            </>       
+                        )}
+                        {role === 'RIDER' && (
+                            <>
+                            <li onClick={removeNavBar} className="listItem">
+                                <a href="/rider">Schedule</a>
+                            </li>
+                            <li onClick={removeNavBar} className="listItem">
+                                <a href="/applydelivery">Apply delivery</a>
+                            </li>
+                            </>
+                            
+                        )}
+                        {role === 'PARTNER' && (
+                            <>
+                            <li onClick={removeNavBar} className="listItem">
+                                <a href="/partnerhome">Food posted</a>
+                            </li>
+                            <li onClick={removeNavBar} className="listItem">
+                                <a href="/partnerAddFood">Add food</a>
+                            </li>
+                            </>
+                            
+                        )}
+                        {role === 'ADMIN' && (
+                            <li onClick={removeNavBar} className="listItem">
+                                <a href="/admin">Admin Page</a>
+                            </li>
+                        )}
                     </ul>
 
                     <Link to="/login">
@@ -157,7 +206,7 @@ const NavbarMember = () => {
                 </div>
 
             </div>
-            
+
 
 
         </div>
