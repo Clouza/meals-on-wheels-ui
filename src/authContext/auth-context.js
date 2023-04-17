@@ -7,6 +7,7 @@ const AuthContext = React.createContext({
   userId: "",
   token: "",
   user:{},
+  role:{},
   isAdmin: false,
   isMember: false,
   isRider: false,
@@ -111,7 +112,7 @@ useEffect(() => {
       navigate("/rider");
     }
     if (role === "PARTNER") {
-      navigate("/partnerFoodList");
+      navigate("/partnerhome");
     }
   };
 

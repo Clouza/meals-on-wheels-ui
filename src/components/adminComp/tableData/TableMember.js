@@ -54,7 +54,7 @@ export const TableMember = () => {
 
   const handleEdit = async (user) => {
     try {
-      navigate('/memberupdateprofile', { state: { userDetail: user } });
+      navigate('/updateprofile', { state: { userDetail: user } });
     } catch (error) {
       console.error(error);
     }

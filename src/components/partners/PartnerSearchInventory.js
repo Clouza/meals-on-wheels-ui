@@ -9,7 +9,7 @@ const PartnerSearchInventory = () => {
 							<h2 className='m-1'>Inventory</h2>
 						</div>
 						<div className='col-sm-6 text-end'>
-							<a className='btn btn-primary text-white m-3'>+ Add Food</a>
+							<a href="/partnerAddFood" className='btn btn-primary text-white m-3'>+ Add Food</a>
 						</div>
 					</div>
           <form className="container-fluid container p-0 mb-4">

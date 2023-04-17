@@ -2,6 +2,7 @@ import '../../css/partner/partner.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useState } from 'react';
 import MemberFoodCard from './MemberFoodCard';
+import MemberFoodCardHistory from './MemberFoodCardHistory';
 
 
 
@@ -72,7 +73,7 @@ const MemberOrder = () => {
           role="tabpanel"
           aria-labelledby="history"
         >
-          <MemberFoodCard/>
+          <MemberFoodCardHistory/>
         </div>
       </div>
       {/* Tabs content */}

@@ -1,6 +1,7 @@
 import '../../css/partner/partner.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import PartnerSearchInventory from './PartnerSearchInventory';
+import { Link } from 'react-router-dom';
 
 
 
@@ -28,7 +29,9 @@ const PartnersFoodList = () => {
 							<td>Approved</td>
 							<td>20/12/1945</td>
 							<td>
+								<Link to={"/partnerEditFood"}>
 								<button className='btn btn-primary mx-2 mb-1'>Update</button>
+								</Link>
 								<button className='btn btn-warning mx-2 mb-1'>Remove</button>
 							</td>
 						</tr>

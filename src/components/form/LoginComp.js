@@ -97,7 +97,7 @@ const LoginComp = () => {
                   navigate('/rider');
                   break;
                 case 'PARTNER':
-                  navigate('/partnerFoodList');
+                  navigate('/partnerhome');
                   break;
                 case 'ADMIN':
                   navigate('/admin');

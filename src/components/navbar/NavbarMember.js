@@ -64,8 +64,6 @@ const NavbarMember = () => {
 
     return (
         <div className="navBar flex">
-            {/* Header user not yet login */}
-            {/* {!authCtx.isLoggedIn && (<> */}
             <div className="navBarOne flex">
                 <div>
                     <SiConsul className="icon" />
@@ -80,20 +78,16 @@ const NavbarMember = () => {
                         {isChanged ? <Locale /> : ""}
                     </li>
                 </div>
-
-                <div className="atb flex">
-                    {/* <span>User</span> */}
-                </div>
-
                 {sessionStorage.getItem('token') != null ?
                     <div className="atb flex">
-                        <span>WELCOME "name user"</span>
+                        <Link to={"/viewprofile"}>
+                            <span>"name user"</span>
+                        </Link>
                     </div>
                     :
                     // else
                     <>
                         <div className="atb flex">
-                            {/* <span>User</span> */}
                         </div>
                     </>
                 }
@@ -106,12 +100,17 @@ const NavbarMember = () => {
                 </div>
 
                 <div className={active}>
+
                     <ul className="menu flex">
                         <li onClick={removeNavBar} className="listItem"> <a href="/"> {lang.navbar_home}</a> </li>
                         <li onClick={removeNavBar} className="listItem"> <a href="/donate">{lang.navbar_donate} </a> </li>
                         <li onClick={removeNavBar} className="listItem"><a href="/about">{lang.navbar_about}</a></li>
                         <li onClick={removeNavBar} className="listItem"><a href="/contact">{lang.navbar_contact}</a>  </li>
                         <li onClick={removeNavBar} className="listItem">  </li>
+                        {authCtx.role === 'MEMBER' && <a href="/member">Member</a>}
+                        {authCtx.role === 'RIDER' && <a href="/rider">Rider</a>}
+                        {authCtx.role === 'PARTNER' && <a href="/partner">Partner</a>}
+                        {authCtx.role === 'ADMIN' && <a href="/admin">Admin</a>}
                     </ul>
 
                     <Link to="/login">
@@ -157,11 +156,6 @@ const NavbarMember = () => {
                 </div>
 
             </div>
-            {/* </>)} */}
-
-
-            {/* ==================================================== */}
-
 
         </div>
     )

@@ -2,7 +2,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import '../../css/partner/partnerProfile.css';
 import '../../css/landing.css'
 
-const MemberUpdateProfile = () => {
+const UpdateProfile = () => {
   return(
   <>
     <div className='profile'>
@@ -55,4 +55,4 @@ const MemberUpdateProfile = () => {
   )
 }
 
-export default MemberUpdateProfile;
+export default UpdateProfile;

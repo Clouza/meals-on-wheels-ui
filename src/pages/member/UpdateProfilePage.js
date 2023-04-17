@@ -1,10 +1,10 @@
 import Footer from "../../components/footer/Footer"
-import MemberUpdateProfile from "../../components/member/MemberUpdateProfile"
+// import UpdateProfile from "../../components/member/UpdateProfile"
 import NavbarMember from "../../components/navbar/NavbarMember"
 import { useLocation,useNavigate } from 'react-router-dom';
 import Service from "../../service/Service";
 
-const MemberUpdateProfilePage = () => {
+const UpdateProfilePage = () => {
   // get data from form pervious input
   const location = useLocation();
   const user = location.state.userDetail;
@@ -63,4 +63,4 @@ const MemberUpdateProfilePage = () => {
   )
 }
 
-export default MemberUpdateProfilePage
+export default UpdateProfilePage
