@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useEffect,useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
+import Service from '../../../service/Service';
 
 export const TableFood = () => {
   const styles = {
@@ -9,6 +10,45 @@ export const TableFood = () => {
   };
   const color = {
     color: 'blue'
+  }
+  const [meals, setMeals] = useState([]);
+  const fetchData = async () => {
+    try {
+      Service.getFoods().then(res=>{
+        setMeals(res.data)
+      })
+    } catch (error) {
+      console.log(error)
+    }
+  };
+  useEffect(()=>{
+    console.log(meals)
+    fetchData();
+  },[])
+  const handleApprove = async (id, role) => {
+    try {
+      const data = { id, type: role };
+      await Service.approveUser(data);
+      fetchData();
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  const handleDelete = async (id) => {
+    // try {
+    //   await Service.deleteUser(id);
+    //   fetchData();
+    // } catch (error) {
+    //   console.error(error);
+    // }
+  }
+
+  const handleEdit = async (meal) => {
+    // try {
+    //   navigate('/memberupdateprofile', { state: { userDetail: user } });
+    // } catch (error) {
+    //   console.error(error);
+    // }
   }
   return (
     <div>
@@ -19,22 +59,31 @@ export const TableFood = () => {
                       <th>Name food</th>
                       <th>Description</th>
                       <th>Stock</th>
-                      <th>Partner</th>
+                      <th>Picture</th>
                       <th>Option</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td>Semur jengkol</td>
-                      <td>Semur jengkol</td>
-                      <td>Semur jengkol</td>
-                      <td>Semur jengkol</td>
+                    {meals.map((m,index)=>(
+                      <tr key={index}>
+                      <td>{m.name}</td>
+                      <td>{m.description}</td>
+                      <td>{m.stock}</td>
+                      <td>{m.picture}</td>
                       <td>
-                        <button style={styles} className='btn btn-success'>Approve</button>
-                        <button style={styles} className='btn btn-primary'>Edit</button>
-                        <button style={styles} className='btn btn-danger'>Remove</button>
+                      {
+                      m.approved ? <button style={styles} className='btn btn-secondary' disabled>Approve</button>
+                      :
+                      <button style={styles} className='btn btn-success'
+                      onClick={() => handleApprove(m.mealId, "meals")}>Approve</button>
+                      }
+                        <button style={styles} className='btn btn-success'
+                          onClick={() => handleEdit(m)}>Edit</button>
+                        <button style={styles} className='btn btn-danger'
+                          onClick={() => handleDelete(m.mealId)}>Delete</button>
                       </td>
                     </tr>
+                    ))}
                   </tbody>
                 </table>
     </div>

@@ -1,4 +1,4 @@
-import React,{useEffect} from "react";
+import React,{useEffect,useState} from "react";
 import Footer from "../../components/footer/Footer";
 import NavbarMember from "../../components/navbar/NavbarMember";
 import Subscribe from "../../components/subscribe/Subscribe";
@@ -7,108 +7,43 @@ import SupportMember from "../../components/support/SupportMember";
 import { Link } from 'react-router-dom';
 import '../../css/foodCard.css';
 import Aos from 'aos';
+import Service from "../../service/Service";
+import axios from "axios";
 
 const MemberHomePage = () => {
+    const [meals, setMeals] = useState([]);
     useEffect(() => {
         Aos.init({duration: 2000})
+        try{
+            Service.getMemberFoods(true).then(res=>{
+                setMeals(res.data)
+            })
+        }catch (error) {
+            console.error(error);
+        }
+        console.log(meals)
     },[])
     return (
         <>
             <NavbarMember />  
             <Home />
             <SupportMember />
+            {meals.map((m,index)=>(
+                <div data-aos='fade-up' data-aos-duration='2000' id={index} className="kotak">
+                    <div className="box-stock">
+                        <img src={"http://localhost:8080/get-image/MEALS/"+m.picture} alt="" />
+                        <h4>{m.name}({m.stock})</h4>
+                        <p>{m.category.name}</p>
+                        <Link
+                            className="btn-food"
+                            to="/detailfood"
+                        >
+                            More
+                        </Link>
+                    </div>
+                </div>
+            ))}
             
-            <div data-aos='fade-up' data-aos-duration='2000' className="kotak">
-                <div className="box-stock">
-                    <img src="https://images.unsplash.com/photo-1498837167922-ddd27525d352?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" alt="" />
-                    <h4>Name food</h4>
-                    <p>Location: <b> Store</b> </p>
-                    <Link
-                        className="btn-food"
-                        to="/detailfood"
-                    >
-                        More
-                    </Link>
-                </div>
-            </div>
-            <div data-aos='fade-up' data-aos-duration='2000' className="kotak">
-                <div className="box-stock">
-                    <img src="https://images.unsplash.com/photo-1498837167922-ddd27525d352?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" alt="" />
-                    <h4>Name food</h4>
-                    <p>Location: <b> Store</b> </p>
-                    <Link
-                        className="btn-food"
-                        to=""
-                    >
-                        More
-                    </Link>
-                </div>
-            </div>
-            <div data-aos='fade-up' data-aos-duration='2000' className="kotak">
-                <div className="box-stock">
-                    <img src="https://images.unsplash.com/photo-1498837167922-ddd27525d352?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" alt="" />
-                    <h4>Name food</h4>
-                    <p>Location: <b> Store</b> </p>
-                    <Link
-                        className="btn-food"
-                        to=""
-                    >
-                        More
-                    </Link>
-                </div>
-            </div>
-            <div data-aos='fade-up' data-aos-duration='2000' className="kotak">
-                <div className="box-stock">
-                    <img src="https://images.unsplash.com/photo-1498837167922-ddd27525d352?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" alt="" />
-                    <h4>Name food</h4>
-                    <p>Location: <b> Store</b> </p>
-                    <Link
-                        className="btn-food"
-                        to=""
-                    >
-                        More
-                    </Link>
-                </div>
-            </div>
-            <div data-aos='fade-up' data-aos-duration='2000' className="kotak">
-                <div className="box-stock">
-                    <img src="https://images.unsplash.com/photo-1498837167922-ddd27525d352?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" alt="" />
-                    <h4>Name food</h4>
-                    <p>Location: <b> Store</b> </p>
-                    <Link
-                        className="btn-food"
-                        to=""
-                    >
-                        More
-                    </Link>
-                </div>
-            </div>
-            <div data-aos='fade-up' data-aos-duration='2000' className="kotak">
-                <div className="box-stock">
-                    <img src="https://images.unsplash.com/photo-1498837167922-ddd27525d352?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" alt="" />
-                    <h4>Name food</h4>
-                    <p>Location: <b> Store</b> </p>
-                    <Link
-                        className="btn-food"
-                        to=""
-                    >
-                        More
-                    </Link>
-                </div>
-            </div>
-            <div data-aos='fade-up' data-aos-duration='2000' className="kotak">
-                <div className="box-stock">
-                    <img src="https://images.unsplash.com/photo-1498837167922-ddd27525d352?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" alt="" />
-                    <h4>Name food</h4>
-                    <p>Location: <b> Store</b> </p>
-                    <Link
-                        className="btn-food"
-                        to=""
-                    >
-                        More
-                    </Link>
-                </div>
-            </div>
             
             <Subscribe />
             <Footer />
