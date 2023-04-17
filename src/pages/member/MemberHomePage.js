@@ -32,7 +32,7 @@ const MemberHomePage = () => {
                 <div data-aos='fade-up' data-aos-duration='2000' id={index} className="kotak">
                     <div className="box-stock">
                         <img src={"http://localhost:8080/get-image/MEALS/"+m.picture} alt="" />
-                        <h4>{m.name}({m.stock})</h4>
+                        <h4>{m.name}</h4>
                         <p>{m.category.name}</p>
                         <Link
                             className="btn-food"

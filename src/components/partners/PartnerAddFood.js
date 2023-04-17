@@ -14,8 +14,7 @@ const PartnerAddFood = () => {
     postedBy:{}
   });
   const [selectedFile, setSelectedFile] = useState(null);
-  const [error, setError] = useState(null);
-  const [success, setSuccess] = useState(false);
+
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -36,8 +35,6 @@ const PartnerAddFood = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError(null);
-    setSuccess(false);
     
     try {
       const user = (await Service.getPartner((await Service.getUser()).data.username)).data;
@@ -48,11 +45,9 @@ const PartnerAddFood = () => {
       const imageData = new FormData();
       imageData.append('file', selectedFile);
       imageData.append('userID', user.partnerId);
-      console.log(formDataWithUser);
-      await Service.uploadImage(imageData);
+      await Service.uploadImage(imageData,"MEALS");
 
       await Service.addFood(formDataWithUser).then(res =>{alert(res.data.response)});
-      setSuccess(true);
       setFormData({
         name: '',
         stock: '',
@@ -62,7 +57,7 @@ const PartnerAddFood = () => {
         postedBy: {},
       });
     } catch (error) {
-      setError(error.message);
+      console.error(error)
     }
   };
 	return (

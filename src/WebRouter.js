@@ -52,7 +52,7 @@ function App() {
       <Route path="/memberorder" element={<MemberOrderPage />}></Route>
       <Route path="/member" element={<MemberHomePage />}></Route>
       <Route path="/detailfood" element={<MemberDetailFoodPage />}></Route>
-      <Route path="/memberprofile" element={<MemberProfilePage />}></Route>
+      <Route path="/profile" element={<MemberProfilePage />}></Route>
       <Route path="/memberupdateprofile" element={<MemberUpdateProfilePage />}></Route>
 
       <Route path="/rider" element={<DashboardRiderPage />}></Route>

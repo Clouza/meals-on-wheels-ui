@@ -3,18 +3,6 @@ import axios from 'axios';
 const API_BASE_URL = 'http://localhost:8080/';
 
 class Service{
-    // ----------------------------------------------------------------Base Method---------------------------------------------------------------------
-    async getUser(){
-        const token = sessionStorage.getItem('token');
-        if (!token) {
-            throw new Error('Token not found in session storage');
-        }
-        return (await axios.get(API_BASE_URL+"user/"+token))
-    }
-
-
-    // ----------------------------------------------------------------Login And Register---------------------------------------------------------------------
-
     async nonAuthorizedRequest(endpoint, data, header = false) {
         try {
             const headers = header ? { 'Authorization': `Bearer ${sessionStorage.getItem('token')}` } : {};
@@ -57,6 +45,22 @@ class Service{
 
         return response;
     }
+    // ----------------------------------------------------------------Base Method---------------------------------------------------------------------
+    async getUser(){
+        const token = sessionStorage.getItem('token');
+        if (!token) {
+            throw new Error('Token not found in session storage');
+        }
+        return (await axios.get(API_BASE_URL+"user/"+token))
+    }
+    async updateUser(data){
+        return await axios.put(API_BASE_URL+"profile",data);
+    }
+    async uploadImage(data,type) {
+        return await this.nonAuthorizedRequest("upload-image/"+type, data, true)
+    }
+
+    // ----------------------------------------------------------------Login And Register---------------------------------------------------------------------
 
     // Used in RegisterComp.js
     async register(data) {
@@ -66,9 +70,7 @@ class Service{
     async registerMember(data) {
         return await this.nonAuthorizedRequest("upload/MEMBER", data, true);
     }
-    async uploadImage(data) {
-        return await this.nonAuthorizedRequest("upload-image/MEALS", data, true)
-    }
+    
     // Used in NextRegRider.js
     async registerRider(data) {
         return await this.nonAuthorizedRequest("upload/RIDER", data, true);
@@ -83,6 +85,7 @@ class Service{
     async login(data) {
         return await this.nonAuthorizedRequest("login", data);
     }
+
 
 
     // ----------------------------------------------------------------Administrator Dasboard---------------------------------------------------------------------
@@ -103,7 +106,9 @@ class Service{
         return await this.authorizedRequest("api/v1/admin/meals", 'GET');
     }
 
-
+    async getPartnerByMealsId(id){
+        return await this.authorizedRequest("api/v1/admin/partner/"+id,'GET')
+    }
     async getDonators() {
         return await this.authorizedRequest("api/v1/admin/donators", 'GET');
     }
@@ -115,20 +120,31 @@ class Service{
     async deleteUser(id) {
         return await this.authorizedRequest("api/v1/admin/delete/" + id, 'DELETE');
     }
+    async AdminUpdateFood(data){
+        return await this.authorizedRequest("api/v1/admin/meals",'PUT',data)
+    }
+    async AdminDeleteFood(id){
+        return await this.authorizedRequest("api/v1/admin/meals/"+id,'DELETE')
+    }
+    async AdminDeleteFood(id){
+        return await this.authorizedRequest("api/v1/admin/meals/"+id,'DELETE')
+    }
 
     // ----------------------------------------------------------------Partner Side---------------------------------------------------------------------
 
     async addFood(data) {
         return await this.authorizedRequest("api/v1/partner/meals", 'POST', data);
     }
-
+    async updateFood(data){
+        return await this.authorizedRequest("api/v1/partner/meals",'PUT',data)
+    }
+    async deleteFood(id){
+        return await this.authorizedRequest("api/v1/partner/meals/"+id,'DELETE')
+    }
     async getPartner(user) {
-        return await this.authorizedRequest("api/v1/partner/get-partner/" + user, 'GET')
+        return await this.authorizedRequest("api/v1/partner/" + user, 'GET')
     }
 
-    async getPartner(user) {
-        return await this.authorizedRequest("api/v1/partner/get-partner/" + user, 'GET')
-    }
 
     // ----------------------------------------------------------------Rider Side---------------------------------------------------------------------
 
