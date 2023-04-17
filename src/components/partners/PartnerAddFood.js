@@ -3,13 +3,15 @@ import '../../css/partner/partnerAddFood.css'
 import '../../css/landing.css'
 import { useState } from 'react';
 import Service from '../../service/Service';
+import axios from 'axios';
 const PartnerAddFood = () => {
 	const [formData, setFormData] = useState({
-    foodName: '',
+    name: '',
     stock: '',
-    categories: '',
+    categoryName: '',
     description: '',
-    image: null
+    picture: null,
+    postedBy:{}
   });
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(false);
@@ -26,7 +28,7 @@ const PartnerAddFood = () => {
 		const file = event.target.files[0];
     setFormData({
       ...formData,
-			image:file.name
+			picture:file.name
     });
   }
 
@@ -34,17 +36,24 @@ const PartnerAddFood = () => {
     e.preventDefault();
     setError(null);
     setSuccess(false);
-
+  
     try {
-			setFormData({
-				name: '',
+      const user = (await Service.getPartner((await Service.getUser()).data.username)).data;
+      const formDataWithUser = {
+        ...formData,
+        postedBy: user,
+      };
+      console.log(formDataWithUser);
+      await Service.addFood(formDataWithUser).then(res =>{alert(res.data.response)});
+      setSuccess(true);
+      setFormData({
+        name: '',
         stock: '',
-        categories: '',
+        categoryName: '',
         description: '',
-        image: null,
+        picture: null,
+        postedBy: {},
       });
-			console.log(formData)
-			await Service.addFood(formData).then(res=>{alert(res)})
     } catch (error) {
       setError(error.message);
     }
@@ -65,8 +74,8 @@ const PartnerAddFood = () => {
                 <div className='col-sm-12 col-xl-6 '>
                   <label className='form-label'>Food Name</label>
                   <input className='form-control mb-3' type='text' required
-                    name="foodName"
-                    value={formData.foodName}
+                    name="name"
+                    value={formData.name}
                     onChange={handleInputChange}
                   />
                 </div>
@@ -82,8 +91,8 @@ const PartnerAddFood = () => {
 
               <label className='form-label'>Categories</label>
               <input className='form-control mb-3' type='text' required
-                name="categories"
-                value={formData.categories}
+                name="categoryName"
+                value={formData.categoryName}
                 onChange={handleInputChange}
               />
               <label className='form-label'>Description</label>

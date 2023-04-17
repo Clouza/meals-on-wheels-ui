@@ -21,8 +21,8 @@ export const TableRider = () => {
       {/* Change the Service.getRiders() depends on what table it is. ex : table member = Service.getMembers() */}
       {/* Delete this comment if u already change it or read this. there is another not in the bottom please take a look */}
       const [approved, notApproved] = await Promise.all([
-        Service.getRiders({ approved: true }),
-        Service.getRiders({ approved: false })
+        Service.getRiders( true ),
+        Service.getRiders( false )
       ]);
       setApprovedUsers(approved.data);
       setNotApprovedUsers(notApproved.data);

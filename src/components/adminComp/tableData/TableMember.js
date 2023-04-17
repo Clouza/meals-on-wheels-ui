@@ -19,8 +19,8 @@ export const TableMember = () => {
   const fetchData = async () => {
     try {
       const [approved, notApproved] = await Promise.all([
-        Service.getMembers({ approved: true }),
-        Service.getMembers({ approved: false })
+        Service.getMembers( true ),
+        Service.getMembers( false)
       ]);
       setApprovedUsers(approved.data);
       setNotApprovedUsers(notApproved.data);
