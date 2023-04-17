@@ -1,30 +1,33 @@
-import React,{useState} from "react";
+import React, { useState, useContext } from "react";
 import '../../css/form.css';
 import { useNavigate } from 'react-router-dom';
 import { BsFacebook } from 'react-icons/bs';
 import { SlSocialGoogle } from 'react-icons/sl';
 import { FiTwitter } from 'react-icons/fi';
+import AuthContext from "../../authContext/auth-context";
+import { useForm } from "react-hook-form";
+import axios from 'axios';
 // Import Image
 import logo from '../../assets/logo.png';
 import Service from "../../service/Service";
-const colorFacebook ={
-    background:'#1877f2',
-    fontSize: '20px', 
-    display: 'flex', 
+const colorFacebook = {
+    background: '#1877f2',
+    fontSize: '20px',
+    display: 'flex',
     alignItems: 'center',
     justifyContent: 'space-between'
 };
-const colorGoogle ={
-    background:'#ea4335',
-    fontSize: '20px', 
-    display: 'flex', 
+const colorGoogle = {
+    background: '#ea4335',
+    fontSize: '20px',
+    display: 'flex',
     alignItems: 'center',
     justifyContent: 'space-between'
 };
-const colorTWitter ={
-    background:'#1da1f2',
-    fontSize: '20px', 
-    display: 'flex', 
+const colorTWitter = {
+    background: '#1da1f2',
+    fontSize: '20px',
+    display: 'flex',
     alignItems: 'center',
     justifyContent: 'space-between'
 };
@@ -36,6 +39,9 @@ const LoginComp = () => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const navigate = useNavigate();
+    const authCtx = useContext(AuthContext);
+    const [invalid, setInvalid] = useState(false);
+    const {reset } = useForm();
 
     const handleUsernameChange = event => {
         setUsername(event.target.value);
@@ -43,17 +49,65 @@ const LoginComp = () => {
     const handlePasswordChange = event => {
         setPassword(event.target.value);
     };
-    const handleFormSubmit =(event)=>{
+    // const handleFormSubmit = (data) => {
+    //     // event.preventDefault();
+    //     // const data = {
+    //     //     username: username,
+    //     //     password: password
+    //     // }
+    //     // Service.login(data).then(res=>{
+    //     //     sessionStorage.setItem('token', res.data.response);
+    //     //     navigate("/");
+    //     // })
+
+    //     Service.login(data.username, data.password)
+    //         .then((res) => {
+    //             authCtx.login(res.data.token);
+    //             authCtx.redirectLogin(res.data.role);
+    //             reset();
+    //         })
+    //         .catch((err) => {
+    //             setInvalid(true);
+    //         });
+    // };
+
+    const handleFormSubmit = (event) => {
         event.preventDefault();
         const data = {
-            username:username,
-            password:password
+          username: username,
+          password: password
         }
-        Service.login(data).then(res=>{
-            sessionStorage.setItem('token', res.data.response);
-            navigate("/");
-        })
-    }
+        Service.login(data).then(res => {
+          sessionStorage.setItem('token', res.data.response);
+          authCtx.login(res.data.token);
+      
+          // Mengambil role user dari endpoint API
+          Service.getUser()
+            .then(response => {
+              const role = response.data.role;
+              authCtx.redirectLogin(role);
+              reset();
+      
+              // Redirect ke halaman sesuai role
+              switch (role) {
+                case 'MEMBER':
+                  navigate('/member');
+                  break;
+                case 'RIDER':
+                  navigate('/rider');
+                  break;
+                case 'PARTNER':
+                  navigate('/partnerFoodList');
+                  break;
+                case 'ADMIN':
+                  navigate('/admin');
+                  break;
+                default:
+                  navigate('/');
+              }
+            });
+        });
+      };
 
     return (
         <>

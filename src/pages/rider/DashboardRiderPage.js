@@ -11,7 +11,8 @@ const DashboardRiderPage = () => {
     return (
         <>
             <NavbarMember />
-            <Home />
+            {/* <Home /> */}
+            <br /><br /><br /><br /><br />
             <RiderHeading />
             <div className="cardbox">
                 <div className="card">
@@ -32,9 +33,9 @@ const DashboardRiderPage = () => {
                     </div>
                 </div>
             </div>
+            <br /><br /><br /><br /><br />
 
-
-            <Subscribe />
+            {/* <Subscribe /> */}
             <Footer />
         </>
     )
