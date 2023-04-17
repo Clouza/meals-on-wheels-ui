@@ -14,6 +14,7 @@ import { IoIosArrowDown } from "react-icons/io";
 import logo from '../../assets/logo.png';
 import Locale from "./Locale";
 import lang from '../../Localization';
+import Service from "../../service/Service";
 
 const NavbarMember = () => {
 
@@ -156,6 +157,8 @@ const NavbarMember = () => {
                 </div>
 
             </div>
+            
+
 
         </div>
     )

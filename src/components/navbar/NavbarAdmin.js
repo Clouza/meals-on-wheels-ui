@@ -5,12 +5,19 @@ import { MdOutlineRememberMe } from 'react-icons/md';
 import { IoMdAddCircle } from 'react-icons/io';
 import { FaPeopleCarry, FaDonate, FaMotorcycle } from 'react-icons/fa';
 import { AiOutlineLogout } from 'react-icons/ai';
+import {  useNavigate } from 'react-router-dom';
 import '../../css/admin.css';
 
 const NavbarAdmin = () => {
   const styles = {
     padding: '0rem 0.5rem',
     marginLeft : '1rem'
+  };
+  const navigate = useNavigate();
+  const logoutHandler = () => {
+    alert("jalan")
+    sessionStorage.removeItem('token');
+    navigate("/login");
   };
   useEffect(() => {
     const sideMenu = document.querySelector("aside");
@@ -74,9 +81,9 @@ const NavbarAdmin = () => {
             <a href=""><span className="material-icon"><FaDonate /></span>
               <h3>Donator</h3>
             </a>
-            <a href=""><span className="material-icon"><AiOutlineLogout /></span>
+            <button onClick={logoutHandler}><span className="material-icon"><AiOutlineLogout /></span>
               <h3>Log out</h3>
-            </a>
+            </button>
           </div>
         </aside>
 
