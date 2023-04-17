@@ -3,6 +3,15 @@ import axios from 'axios';
 const API_BASE_URL = 'http://localhost:8080/';
 
 class Service{
+    // ----------------------------------------------------------------Base Method---------------------------------------------------------------------
+    async getUser(){
+        const token = sessionStorage.getItem('token');
+        if (!token) {
+            throw new Error('Token not found in session storage');
+        }
+        return (await axios.get(API_BASE_URL+"user/"+token))
+    }
+
     // ----------------------------------------------------------------Login And Register---------------------------------------------------------------------
     async nonAuthorizedRequest(endpoint, data, header = false) {
         try {
@@ -73,18 +82,9 @@ class Service{
         return await this.nonAuthorizedRequest("login", data);
     }
 
-    async getUser(){
-        const token = sessionStorage.getItem('token');
-        if (!token) {
-            throw new Error('Token not found in session storage');
-        }
-        return (await axios.get(API_BASE_URL+"user/"+token))
-    }
+    
 
     // ----------------------------------------------------------------Administrator Dasboard---------------------------------------------------------------------
-    
-    
-    
     
     async getRiders(data) {
         return await this.authorizedRequest("api/v1/admin/riders/"+data,'GET');
@@ -115,6 +115,7 @@ class Service{
     async deleteUser(id) {
         return await this.authorizedRequest("api/v1/admin/delete/"+id, 'DELETE');
     }
+    
     // ----------------------------------------------------------------Partner Side---------------------------------------------------------------------
     
     async addFood(data){
