@@ -13,6 +13,7 @@ const PartnerAddFood = () => {
     picture: null,
     postedBy:{}
   });
+  const [selectedFile, setSelectedFile] = useState(null);
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(false);
 
@@ -30,20 +31,26 @@ const PartnerAddFood = () => {
       ...formData,
 			picture:file.name
     });
+    setSelectedFile(file);
   }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError(null);
     setSuccess(false);
-  
+    
     try {
       const user = (await Service.getPartner((await Service.getUser()).data.username)).data;
       const formDataWithUser = {
         ...formData,
         postedBy: user,
       };
+      const imageData = new FormData();
+      imageData.append('file', selectedFile);
+      imageData.append('userID', user.partnerId);
       console.log(formDataWithUser);
+      await Service.uploadImage(imageData);
+
       await Service.addFood(formDataWithUser).then(res =>{alert(res.data.response)});
       setSuccess(true);
       setFormData({

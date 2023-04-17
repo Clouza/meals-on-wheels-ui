@@ -57,7 +57,9 @@ class Service {
     async registerMember(data) {
         return await this.nonAuthorizedRequest("upload/MEMBER", data, true);
     }
-
+    async uploadImage(data) {
+        return await this.nonAuthorizedRequest("upload-image/MEALS", data, true)
+    }
     // Used in NextRegRider.js
     async registerRider(data) {
         return await this.nonAuthorizedRequest("upload/RIDER", data, true);
@@ -95,9 +97,10 @@ class Service {
         return await this.authorizedRequest("api/v1/admin/partners/" + data, 'GET');
     }
 
-    async getFoods(data) {
-        return await this.authorizedRequest("api/v1/admin/meals/" + data, 'GET');
+    async getFoods() {
+        return await this.authorizedRequest("api/v1/admin/meals", 'GET');
     }
+
 
     async getDonators() {
         return await this.authorizedRequest("api/v1/admin/donators", 'GET');
@@ -115,6 +118,10 @@ class Service {
 
     async addFood(data) {
         return await this.authorizedRequest("api/v1/partner/meals", 'POST', data);
+    }
+
+    async getPartner(user) {
+        return await this.authorizedRequest("api/v1/partner/get-partner/" + user, 'GET')
     }
 
     async getPartner(user) {
@@ -141,10 +148,13 @@ class Service {
         return await this.authorizedRequest("api/v1/members/rate-service", 'PUT', data);
     }
 
+    async getMemberFoods(data) {
+        return await this.authorizedRequest("api/v1/member/meals/" + data, 'GET');
+    }
+
     // ----------------------------------------------------------------Donators Side---------------------------------------------------------------------
     async donate({ name, email, total, comment }) {
-        return await axios.post(`${API_BASE_URL}api/v1/donator/donate`, { name, email, total, comment })
+        return await axios.post(`${API_BASE_URL}api/v1/donator/donate`, { name, email, total, comment });
     }
 }
-
 export default new Service();
