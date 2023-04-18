@@ -1,7 +1,25 @@
 import React from "react";
 import { MdOutlineHealthAndSafety } from 'react-icons/md';
+import { useLocation,useNavigate } from 'react-router-dom';
 import '../../css/detailfood.css'
+import Service from "../../service/Service";
 const DetailFoodComp = () => {
+  // get data from form pervious input
+  const location = useLocation();
+  const meal = location.state.mealDetail;
+  const navigate = useNavigate()
+  const order =async ()=>{
+    const member = (await Service.getUser()).data
+    const data ={
+      status : "FOOD IS PREPARED",
+      meals:meal,
+      member:member.members,
+    }
+    Service.orderMeals(data).then(res=>{
+      alert(res.data.response)
+      navigate("/memberorder")
+    })
+  }
     return (
         <div className="detailfood">
         <div className="boxfood">
@@ -20,13 +38,14 @@ const DetailFoodComp = () => {
             </div>
           </div>
           <div className="basic-info">
-            <h1>Food name</h1>
+            <h1>{meal.name}</h1>
             <div className="options">
-              <a href="/memberorder">Order</a>
+              <button className="btn btn-success" onClick={()=>order()}>Order</button>
+              {/* <a href="/memberorder">Order</a> */}
             </div>
           </div>
           <div className="description">
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Natus temporibus corporis repudiandae, consectetur nostrum nisi commodi placeat rerum molestias numquam nihil accusantium deleniti! Enim, nesciunt a quis amet hic officia. Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae nemo accusantium tempora facere doloremque cum iusto, ut neque, fuga omnis libero laborum ullam. At dolorum qui atque labore illo dignissimos.</p>
+            <p>{meal.description}</p>
 
             <ul className="social">
               <li><a href="#"><MdOutlineHealthAndSafety /></a></li>

@@ -159,11 +159,13 @@ class Service{
     // ----------------------------------------------------------------Member Side---------------------------------------------------------------------
 
     async orderMeals(data) {
-        return await this.authorizedRequest("api/v1/members/order-meals", 'POST', data);
+        return await this.authorizedRequest("api/v1/member/order-meals", 'POST', data);
     }
-
+    async getOrder(status){
+        return await this.authorizedRequest("api/v1/member/order/"+status,"GET")
+    }
     async giveRatings(data) {
-        return await this.authorizedRequest("api/v1/members/rate-service", 'PUT', data);
+        return await this.authorizedRequest("api/v1/member/rate-service", 'PUT', data);
     }
 
     async getMemberFoods(data) {

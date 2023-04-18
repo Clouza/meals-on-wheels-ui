@@ -92,17 +92,17 @@ export const TablePartner = () => {
             <tbody>
               {approvedUsers.map((au, index) => (
                 <tr key={index}>
-                  <td>{au.user.userDetails.name}</td>
-                  <td>{au.user.email}</td>
-                  <td>{au.user.userDetails.age}</td>
-                  <td>{au.user.userDetails.phoneNumber}</td>
-                  <td>{au.user.userDetails.address}</td>
-                  <td>{au.user.userDetails.createdAt}</td>
+                  <td>{au.userDetails.name}</td>
+                  <td>{au.email}</td>
+                  <td>{au.userDetails.age}</td>
+                  <td>{au.userDetails.phoneNumber}</td>
+                  <td>{au.userDetails.address}</td>
+                  <td>{au.userDetails.createdAt}</td>
                   <td>
                     <button style={styles} className='btn btn-success'
-                      onClick={() => handleEdit(au.user)}>Edit</button>
+                      onClick={() => handleEdit(au)}>Edit</button>
                     <button style={styles} className='btn btn-danger'
-                      onClick={() => handleDelete(au.user.userId)}>Delete</button>
+                      onClick={() => handleDelete(au.userId)}>Delete</button>
                   </td>
                 </tr>
               ))}
@@ -132,16 +132,16 @@ export const TablePartner = () => {
             <tbody>
             {notApprovedUsers.map((nau, index) => (
               <tr key={index}>
-                <td>{nau.user.username}</td>
-                <td>{nau.user.email}</td>
+                <td>{nau.username}</td>
+                <td>{nau.email}</td>
                 <td>
 
                   <button style={styles} className='btn btn-success' 
-                  onClick={() => handleApprove(nau.partnerId, nau.user.role.toLowerCase())}>
+                  onClick={() => handleApprove(nau.partners.partnerId, nau.role.toLowerCase())}>
                     Approve
                   </button>
                   <button style={styles} className='btn btn-danger' 
-                  onClick={() => handleDelete(nau.user.userId)}>Ignore</button>
+                  onClick={() => handleDelete(nau.userId)}>Ignore</button>
                 </td>
               </tr>
             ))}
