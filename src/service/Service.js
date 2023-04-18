@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const API_BASE_URL = 'http://localhost:8080/';
 
-class Service{
+class Service {
     async nonAuthorizedRequest(endpoint, data, header = false) {
         try {
             const headers = header ? { 'Authorization': `Bearer ${sessionStorage.getItem('token')}` } : {};
@@ -46,18 +46,18 @@ class Service{
         return response;
     }
     // ----------------------------------------------------------------Base Method---------------------------------------------------------------------
-    async getUser(){
+    async getUser() {
         const token = sessionStorage.getItem('token');
         if (!token) {
             throw new Error('Token not found in session storage');
         }
-        return (await axios.get(API_BASE_URL+"user/"+token))
+        return (await axios.get(API_BASE_URL + "user/" + token))
     }
-    async updateUser(data){
-        return await axios.put(API_BASE_URL+"profile",data);
+    async updateUser(data) {
+        return await axios.put(API_BASE_URL + "profile", data);
     }
-    async uploadImage(data,type) {
-        return await this.nonAuthorizedRequest("upload-image/"+type, data, true)
+    async uploadImage(data, type) {
+        return await this.nonAuthorizedRequest("upload-image/" + type, data, true)
     }
 
     // ----------------------------------------------------------------Login And Register---------------------------------------------------------------------
@@ -70,7 +70,7 @@ class Service{
     async registerMember(data) {
         return await this.nonAuthorizedRequest("upload/MEMBER", data, true);
     }
-    
+
     // Used in NextRegRider.js
     async registerRider(data) {
         return await this.nonAuthorizedRequest("upload/RIDER", data, true);
@@ -106,8 +106,8 @@ class Service{
         return await this.authorizedRequest("api/v1/admin/meals", 'GET');
     }
 
-    async getPartnerByMealsId(id){
-        return await this.authorizedRequest("api/v1/admin/partner/"+id,'GET')
+    async getPartnerByMealsId(id) {
+        return await this.authorizedRequest("api/v1/admin/partner/" + id, 'GET')
     }
     async getDonators() {
         return await this.authorizedRequest("api/v1/admin/donators", 'GET');
@@ -120,14 +120,14 @@ class Service{
     async deleteUser(id) {
         return await this.authorizedRequest("api/v1/admin/delete/" + id, 'DELETE');
     }
-    async AdminUpdateFood(data){
-        return await this.authorizedRequest("api/v1/admin/meals",'PUT',data)
+    async AdminUpdateFood(data) {
+        return await this.authorizedRequest("api/v1/admin/meals", 'PUT', data)
     }
-    async AdminDeleteFood(id){
-        return await this.authorizedRequest("api/v1/admin/meals/"+id,'DELETE')
+    async AdminDeleteFood(id) {
+        return await this.authorizedRequest("api/v1/admin/meals/" + id, 'DELETE')
     }
-    async AdminDeleteFood(id){
-        return await this.authorizedRequest("api/v1/admin/meals/"+id,'DELETE')
+    async AdminDeleteFood(id) {
+        return await this.authorizedRequest("api/v1/admin/meals/" + id, 'DELETE')
     }
     async AdminGetOrders(status) {
         return await this.authorizedRequest("api/v1/admin/order/" + status, 'GET');
@@ -146,11 +146,11 @@ class Service{
     async addFood(data) {
         return await this.authorizedRequest("api/v1/partner/meals", 'POST', data);
     }
-    async updateFood(data){
-        return await this.authorizedRequest("api/v1/partner/meals",'PUT',data)
+    async updateFood(data) {
+        return await this.authorizedRequest("api/v1/partner/meals", 'PUT', data)
     }
-    async deleteFood(id){
-        return await this.authorizedRequest("api/v1/partner/meals/"+id,'DELETE')
+    async deleteFood(id) {
+        return await this.authorizedRequest("api/v1/partner/meals/" + id, 'DELETE')
     }
     async getPartner(user) {
         return await this.authorizedRequest("api/v1/partner/" + user, 'GET')
@@ -196,6 +196,10 @@ class Service{
     // used in table member home page component
     async getMemberFoods(data) {
         return await this.authorizedRequest("api/v1/member/meals/" + data, 'GET');
+    }
+
+    async searchFoods(food) {
+        return await this.authorizedRequest("api/v1/member/meals", "POST", { food });
     }
 
     // ----------------------------------------------------------------Donators Side---------------------------------------------------------------------

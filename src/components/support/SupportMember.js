@@ -1,4 +1,4 @@
-import React,{useEffect} from "react";
+import React, { useEffect } from "react";
 import '../../css/landing.css';
 //import img
 import support from '../../assets/support.png';
@@ -7,13 +7,13 @@ import support from '../../assets/support.png';
 import Aos from 'aos';
 import 'aos/dist/aos.css'
 
-const SupportMember = () =>{
-        // Use effect animation duration
-        useEffect(() => {
-            Aos.init({duration: 2000})
-        },[])
+const SupportMember = () => {
+    // Use effect animation duration
+    useEffect(() => {
+        Aos.init({ duration: 2000 })
+    }, [])
 
-    return(
+    return (
         <div className="support container section">
             <div className="sectionContainer">
                 <div className="titlesDiv">

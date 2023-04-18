@@ -54,7 +54,6 @@ function App() {
       <Route path="/member" element={<MemberHomePage />}></Route>
       <Route path="/detailfood" element={<MemberDetailFoodPage />}></Route>
 
-
       <Route path="/viewprofile" element={<ProfilePage />}></Route>
       <Route path="/updateprofile" element={<UpdateProfilePage />}></Route>
 
