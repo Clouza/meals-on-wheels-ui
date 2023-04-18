@@ -4,16 +4,17 @@ import NavbarMember from "../../components/navbar/NavbarMember";
 import Subscribe from "../../components/subscribe/Subscribe";
 import Home from "../../components/home/Home";
 import SupportMember from "../../components/support/SupportMember";
-import { Link } from 'react-router-dom';
+import { Link,useNavigate } from 'react-router-dom';
 import '../../css/foodCard.css';
 import Aos from 'aos';
+
 import Service from "../../service/Service";
-import axios from "axios";
 import SearchComp from "../../components/member/SearchComp";
 
 
 const MemberHomePage = () => {
     const [meals, setMeals] = useState([]);
+    const navigate = useNavigate();
     useEffect(() => {
         Aos.init({ duration: 2000 })
         try {
@@ -23,7 +24,15 @@ const MemberHomePage = () => {
         } catch (error) {
             console.error(error);
         }
+<<<<<<< HEAD
     }, [])
+=======
+        console.log(meals)
+    },[])
+    const moreBtn =(meals)=>{
+        navigate('/detailfood', { state: { mealDetail: meals } });
+    }
+>>>>>>> 20b9c879558026a963ff9971898dcc5f7e43bd05
     return (
         <>
             <NavbarMember />
@@ -36,9 +45,13 @@ const MemberHomePage = () => {
                         <img src={"http://localhost:8080/get-image/MEALS/" + m.picture} alt="" />
                         <h4>{m.name}</h4>
                         <p>{m.category.name}</p>
+<<<<<<< HEAD
                         <Link className="btn-food" to="/detailfood">
                             More
                         </Link>
+=======
+                        <button className="btn-food" onClick={()=>moreBtn(m)}>More</button>
+>>>>>>> 20b9c879558026a963ff9971898dcc5f7e43bd05
                     </div>
                 </div>
             ))}
