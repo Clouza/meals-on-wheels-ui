@@ -22,6 +22,8 @@ const MemberOrder = () => {
     try {
       const currentResponse = await Service.getOrder("FOOD IS PREPARED");
       setCurrentOrders(currentResponse.data);
+      const ontheWayResponse = await Service.getOrder("FOOD IS ON THE WAY");
+      setCurrentOrders(currentResponse.data,ontheWayResponse.data);
       const finishedResponse = await Service.getOrder("COMPLATE");
       setFinishedOrders(finishedResponse.data.orderHistories);
     } catch (error) {
@@ -32,6 +34,13 @@ const MemberOrder = () => {
   useEffect(() => {
     fetchOrders();
   }, []);
+
+  const cancleOrder =(id)=>{
+    Service.deleteOrder(id).then(res=>{
+      alert(res.data.response)
+      fetchOrders()
+    })
+  }
   return (
     <>
       <div className='partner container mb-4'>
@@ -113,7 +122,7 @@ const MemberOrder = () => {
 									</div>
 									<div className="col-md-6 col-lg-3 col-xl-3 border-sm-start-none border-start">
 										<div className="d-flex flex-column py-4">
-											<button className="btn btn-warning btn-sm my-4" type="button">
+											<button className="btn btn-warning btn-sm my-4" onClick={()=>cancleOrder(order.orderHistoryId)} type="button">
 											  Cancel
 											</button>
 										</div>

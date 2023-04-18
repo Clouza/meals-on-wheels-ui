@@ -151,7 +151,7 @@ class Service{
     async handleOrder(data) {
         return await this.authorizedRequest("api/v1/rider/handle-order", 'PUT', data);
     }
-
+    // used in table food component
     async getOrders(status) {
         return await this.authorizedRequest("api/v1/admin/delete/" + status, 'GET');
     }
@@ -162,12 +162,15 @@ class Service{
         return await this.authorizedRequest("api/v1/member/order-meals", 'POST', data);
     }
     async getOrder(status){
-        return await this.authorizedRequest("api/v1/member/order/"+status,"GET")
+        return await this.authorizedRequest("api/v1/member/order/"+status,'GET')
+    }
+    async deleteOrder(id){
+        return await this.authorizedRequest("api/v1/member/history/"+id,'DELETE')
     }
     async giveRatings(data) {
         return await this.authorizedRequest("api/v1/member/rate-service", 'PUT', data);
     }
-
+    // used in table member home page component
     async getMemberFoods(data) {
         return await this.authorizedRequest("api/v1/member/meals/" + data, 'GET');
     }
