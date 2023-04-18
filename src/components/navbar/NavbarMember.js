@@ -151,7 +151,7 @@ const NavbarMember = () => {
                                 <a href="/partnerhome">Food posted</a>
                             </li>
                             <li onClick={removeNavBar} className="listItem">
-                                <a href="/partnerAddFood">Add food</a>
+                                <a href="/partnerApplyOrder">Apply food</a>
                             </li>
                             </>
                             

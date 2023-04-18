@@ -28,6 +28,7 @@ import UpdateProfilePage from './pages/member/UpdateProfilePage';
 import ProfilePage from './pages/member/ProfilePage';
 import { AdminDashboardPage } from './pages/admin/AdminDashboardPage';
 import NotFound from './pages/NotFound';
+import PartnerApplyOrderPage from './pages/partner/PartnerApplyOrderPage';
 
 if (!sessionStorage.getItem("locale")) {
   sessionStorage.setItem("locale", "en");
@@ -61,6 +62,7 @@ function App() {
       <Route path="/applydelivery" element={<ApplyDeliveryPage />}></Route>
 
       <Route path="/partnerhome" element={<ParnerHomePage />}></Route>
+      <Route path="/partnerApplyOrder" element={<PartnerApplyOrderPage />}></Route>
       <Route path="/partnerAddFood" element={<PartnerAddFoodPage />}></Route>
       <Route path="/partnerEditFood" element={<PartnerEditFoodPage />}></Route>
       {/* <Route path='/partnerProfile' element={<PartnerProfilePage />}></Route>

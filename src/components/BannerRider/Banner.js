@@ -1,6 +1,40 @@
-import React from "react";
+import React,{useState,useEffect} from "react";
 import '../../css/bannerRider.css';
+import Service from "../../service/Service";
+
 const BannerRider = () =>{
+  const [isActive, setIsActive] = useState(false);
+  const [rider, setRider] = useState();
+  const activeBtn ={
+    backgroundColor: isActive ? "green" : "gray",
+    color: 'white',
+    border: 'none',
+    borderRadius: '5px',
+    position:"absolute",
+    cursor: 'pointer',
+    top:0,
+    bottom:0,
+    left:0,
+    right:0
+  }
+  const fetchData = async () => {
+    const userData = (await Service.getUser()).data;
+    const rider = userData.riders;
+    setRider(rider);
+    setIsActive(rider.status === "AVAILABLE");
+  };
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const handleClick = async () => {
+    setIsActive(!isActive);
+    rider.status = isActive ? "BUSY" : "AVAILABLE";
+    
+    // Update the user profile with the new data
+    await Service.updateProfile(rider);
+    fetchData()
+  };
     return(
         <>
         <header>
@@ -22,16 +56,18 @@ const BannerRider = () =>{
             </div>
             <div className="choose_bx">
               <div className="select">
-                <div className="card">
-                  {/* not yet Addd content */}
+                <div className="card" style={{position:"relative"}}>
+                <button isActive={isActive} style={activeBtn} onClick={handleClick}>
+										{isActive ? "Available" : "Busy"}
+									</button>
                 </div>
                 <div className="card">
                   {/* not yet Addd content */}
                 </div>
                 <div className="card">
-                  <div className="left_box">
-                    {/* not yet Addd content */}
-                  </div>
+                  
+                  {isActive ? "You are Active right now, wait for the Order" : "You Will not receive any order right now because you are Busy"}
+                
                 </div>
               </div>
             </div>

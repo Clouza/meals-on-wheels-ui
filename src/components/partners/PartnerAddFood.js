@@ -37,15 +37,17 @@ const PartnerAddFood = () => {
     e.preventDefault();
     
     try {
-      const user = (await Service.getPartner((await Service.getUser()).data.username)).data;
+      const user = (await Service.getUser());
       const formDataWithUser = {
         ...formData,
-        postedBy: user,
+        postedBy: user.data.partners,
       };
+      console.log(formDataWithUser)
       const imageData = new FormData();
       imageData.append('file', selectedFile);
-      imageData.append('userID', user.partnerId);
+      imageData.append('userID', user.data.partners.partnerId);
       await Service.uploadImage(imageData,"MEALS");
+      
 
       await Service.addFood(formDataWithUser).then(res =>{alert(res.data.response)});
       setFormData({

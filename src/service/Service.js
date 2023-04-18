@@ -129,7 +129,18 @@ class Service{
     async AdminDeleteFood(id){
         return await this.authorizedRequest("api/v1/admin/meals/"+id,'DELETE')
     }
-
+    async AdminGetOrders(status) {
+        return await this.authorizedRequest("api/v1/admin/order/" + status, 'GET');
+    }
+    async AdminGetRider(){
+        return await this.authorizedRequest("api/v1/admin/riders",'GET')
+    }
+    async AdminGetSingleRider(username){
+        return await this.authorizedRequest("api/v1/admin/user/"+username,"GET")
+    }
+    async AdminHandleOrder(data) {
+        return await this.authorizedRequest("api/v1/admin/handle-order", 'PUT', data);
+    }
     // ----------------------------------------------------------------Partner Side---------------------------------------------------------------------
 
     async addFood(data) {
@@ -144,16 +155,28 @@ class Service{
     async getPartner(user) {
         return await this.authorizedRequest("api/v1/partner/" + user, 'GET')
     }
-
-
+    async partnerGetOrders(status) {
+        return await this.authorizedRequest("api/v1/partner/order/" + status, 'GET');
+    }
+    async partnerHandleOrder(data) {
+        return await this.authorizedRequest("api/v1/partner/handle-order", 'PUT', data);
+    }
+    async partnerGetSingleRider(username){
+        return await this.authorizedRequest("api/v1/partner/user/"+username,"GET")
+    }
+    async partnerGetRider(){
+        return await this.authorizedRequest("api/v1/partner/riders",'GET')
+    }
     // ----------------------------------------------------------------Rider Side---------------------------------------------------------------------
-
+    async updateProfile(data){
+        return await this.authorizedRequest("api/v1/rider/update",'PUT',data)
+    }
     async handleOrder(data) {
         return await this.authorizedRequest("api/v1/rider/handle-order", 'PUT', data);
     }
     // used in table food component
-    async getOrders(status) {
-        return await this.authorizedRequest("api/v1/admin/delete/" + status, 'GET');
+    async riderGetOrders(status) {
+        return await this.authorizedRequest("api/v1/rider/order/" + status, 'GET');
     }
 
     // ----------------------------------------------------------------Member Side---------------------------------------------------------------------
@@ -161,7 +184,7 @@ class Service{
     async orderMeals(data) {
         return await this.authorizedRequest("api/v1/member/order-meals", 'POST', data);
     }
-    async getOrder(status){
+    async memberGetOrders(status){
         return await this.authorizedRequest("api/v1/member/order/"+status,'GET')
     }
     async deleteOrder(id){

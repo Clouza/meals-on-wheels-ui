@@ -13,6 +13,7 @@ import { TableRider } from './tableData/TableRider';
 import { TablePartner } from './tableData/TablePartner';
 import { TableDonator } from './tableData/TableDonator';
 import { useNavigate } from 'react-router-dom';
+import TableOrder from './tableData/TableOrder';
 
 export const AdminDashboard = () => {
   const [activeLink, setActiveLink] = useState('food');
@@ -75,6 +76,9 @@ export const AdminDashboard = () => {
           <div className="sidebar">
             <a className={activeLink === 'food' ? 'active' : ''} onClick={() => handleLinkClick('food')}><span className="material-icon"><IoMdAddCircle /></span>
               <span className='fw-bold'>Food</span>
+            </a>
+            <a className={activeLink === 'order' ? 'active' : ''} onClick={() => handleLinkClick('order')}><span className="material-icon"><IoMdAddCircle /></span>
+              <span className='fw-bold'>Order</span>
             </a>
             <a className={activeLink === 'member' ? 'active' : ''} onClick={() => handleLinkClick('member')}><span className="material-icon"><MdOutlineRememberMe /></span>
               <span className='fw-bold'>Member</span>
@@ -191,7 +195,13 @@ export const AdminDashboard = () => {
             )}
             {/* =====================IF THE FOOD ACTIVE END */}
 
-
+            {/* =====================IF THE FOOD ACTIVE START */}
+            {activeLink === 'order' && (
+              <div>
+                <TableOrder />
+              </div>
+            )}
+            {/* =====================IF THE FOOD ACTIVE END */}
 
 
             {/* =====================IF THE MEMBER ACTIVE START*/}
