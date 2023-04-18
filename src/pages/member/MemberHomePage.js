@@ -9,6 +9,8 @@ import '../../css/foodCard.css';
 import Aos from 'aos';
 import Service from "../../service/Service";
 import axios from "axios";
+import SearchComp from "../../components/member/SearchComp";
+
 
 const MemberHomePage = () => {
     const [meals, setMeals] = useState([]);
@@ -28,6 +30,7 @@ const MemberHomePage = () => {
             <NavbarMember />  
             <Home />
             <SupportMember />
+            <SearchComp/>
             {meals.map((m,index)=>(
                 <div data-aos='fade-up' data-aos-duration='2000' id={index} className="kotak">
                     <div className="box-stock">
