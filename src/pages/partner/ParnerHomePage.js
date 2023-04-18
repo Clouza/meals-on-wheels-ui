@@ -2,7 +2,7 @@ import Footer from "../../components/footer/Footer"
 import NavbarMember from "../../components/navbar/NavbarMember"
 import PartnersFoodList from "../../components/partners/PartnersFoodList"
 
-const PartnersFoodListPage = () => {
+const ParnerHomePage = () => {
 	return(
 		<>
 			<NavbarMember/>
@@ -12,4 +12,4 @@ const PartnersFoodListPage = () => {
 	)
 }
 
-export default PartnersFoodListPage;
+export default ParnerHomePage;

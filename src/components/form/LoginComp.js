@@ -41,7 +41,9 @@ const LoginComp = () => {
     const navigate = useNavigate();
     const authCtx = useContext(AuthContext);
     const [invalid, setInvalid] = useState(false);
-    const {reset } = useForm();
+    const { reset } = useForm();
+    const [loginError, setLoginError] = useState(false);
+
 
     const handleUsernameChange = event => {
         setUsername(event.target.value);
@@ -49,66 +51,50 @@ const LoginComp = () => {
     const handlePasswordChange = event => {
         setPassword(event.target.value);
     };
-    // const handleFormSubmit = (data) => {
-    //     // event.preventDefault();
-    //     // const data = {
-    //     //     username: username,
-    //     //     password: password
-    //     // }
-    //     // Service.login(data).then(res=>{
-    //     //     sessionStorage.setItem('token', res.data.response);
-    //     //     navigate("/");
-    //     // })
-
-    //     Service.login(data.username, data.password)
-    //         .then((res) => {
-    //             authCtx.login(res.data.token);
-    //             authCtx.redirectLogin(res.data.role);
-    //             reset();
-    //         })
-    //         .catch((err) => {
-    //             setInvalid(true);
-    //         });
-    // };
-
     const handleFormSubmit = (event) => {
         event.preventDefault();
         const data = {
-          username: username,
-          password: password
+            username: username,
+            password: password
         }
         Service.login(data).then(res => {
-          sessionStorage.setItem('token', res.data.response);
-          authCtx.login(res.data.token);
-      
-          // Mengambil role user dari endpoint API
-          Service.getUser()
-            .then(response => {
-              const role = response.data.role;
-              authCtx.redirectLogin(role);
-              reset();
-      
-              // Redirect ke halaman sesuai role
-              switch (role) {
-                case 'MEMBER':
-                  navigate('/member');
-                  break;
-                case 'RIDER':
-                  navigate('/rider');
-                  break;
-                case 'PARTNER':
-                  navigate('/partnerFoodList');
-                  break;
-                case 'ADMIN':
-                  navigate('/admin');
-                  break;
-                default:
-                  navigate('/');
-              }
-            });
-        });
-      };
 
+            if (res.status === 200) {
+                sessionStorage.setItem('token', res.data.response);
+                authCtx.login(res.data.token);
+
+                // Takes the user role from the API endpoint
+                Service.getUser()
+                    .then(response => {
+                        const role = response.data.role;
+                        authCtx.redirectLogin(role);
+                        reset();
+
+                        // Redirect to the page according to the role
+                        switch (role) {
+                            case 'MEMBER':
+                                navigate('/member');
+                                break;
+                            case 'RIDER':
+                                navigate('/rider');
+                                break;
+                            case 'PARTNER':
+                                navigate('/partnerhome');
+                                break;
+                            case 'ADMIN':
+                                navigate('/admin');
+                                break;
+                            default:
+                                navigate('/');
+                        }
+                    });
+            } else {
+                setLoginError(true); // Set the value of loginError to true
+            }
+        }).catch(error => {
+            setLoginError(true); // Set the value of loginError to true
+        });
+    };
     return (
         <>
             <main>
@@ -125,6 +111,10 @@ const LoginComp = () => {
                                     <a href="/register" className="toggle">Register</a>
                                 </div>
                                 <div className="actual-form">
+                                    <div className="actual-form">
+                                        {loginError && <p style={{ color: 'red' }}><b>Password or username is incorrect</b></p>}
+                                        {/* ... */}
+                                    </div>
                                     <div className="input-wrap">
                                         <label className="label">Username</label>
                                         <input

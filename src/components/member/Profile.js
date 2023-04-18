@@ -2,7 +2,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import '../../css/partner/partnerProfile.css';
 import '../../css/landing.css'
 
-const MemberProfile = () => {
+const Profile = () => {
 	return(
 		<>
 			<div className='profile'>
@@ -20,7 +20,7 @@ const MemberProfile = () => {
 						<p className='m-0'>Address: <span className='text-muted'>Cebu, Philippines </span></p>
 						<p className='m-0'>Number: <span className='text-muted'>+63 2658947856</span></p>
 					</div>
-					<a href='/updatePartnersProfile' className='btn btn-primary'>Edit Profile</a>
+					<a href='/updateprofile' className='btn btn-primary'>Edit Profile</a>
 				</div>
 			
 				<div>
@@ -30,4 +30,4 @@ const MemberProfile = () => {
 	)
 }
 
-export default MemberProfile;
+export default Profile;

@@ -78,6 +78,16 @@ li {
     cursor: pointer;
     color: var(--whiteColor);
 }
+.btn2 {
+    padding: .4rem 1rem;
+    background: rgb(219, 184, 8);
+    border: none;
+    outline: none;
+    border-radius: 1rem;
+    cursor: pointer;
+    color: var(--whiteColor);
+    margin-left: 5px;
+}
 
 .btnTwo {
     border: 2px solid black;

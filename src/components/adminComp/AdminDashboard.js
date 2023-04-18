@@ -12,10 +12,11 @@ import { TableMember } from './tableData/TableMember';
 import { TableRider } from './tableData/TableRider';
 import { TablePartner } from './tableData/TablePartner';
 import { TableDonator } from './tableData/TableDonator';
+import { useNavigate } from 'react-router-dom';
 
 export const AdminDashboard = () => {
   const [activeLink, setActiveLink] = useState('food');
-
+  const navigate = useNavigate();
   const handleLinkClick = (link) => {
     setActiveLink(link);
   };
@@ -23,6 +24,10 @@ export const AdminDashboard = () => {
     padding: '0rem 0.5rem',
     marginLeft: '1rem'
   };
+  const logoutHandler = () => {
+    sessionStorage.removeItem('token');
+    navigate("/login");
+};
   useEffect(() => {
     const sideMenu = document.querySelector("aside");
     const menuBtn = document.querySelector("#menu-btn");
@@ -83,8 +88,8 @@ export const AdminDashboard = () => {
             <a className={activeLink === 'donator' ? 'active' : ''} onClick={() => handleLinkClick('donator')}><span className="material-icon"><FaDonate /></span>
               <span className='fw-bold'>Donator</span>
             </a>
-            <a href=""><span className="material-icon"><AiOutlineLogout /></span>
-              <span className='fw-bold'>Log out</span>
+            <a onClick={logoutHandler}><span className="material-icon"><AiOutlineLogout /></span>
+              <span onClick={logoutHandler} className='fw-bold'>Log out</span>
             </a>
           </div>
         </aside>

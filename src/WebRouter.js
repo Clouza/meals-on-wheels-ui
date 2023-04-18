@@ -18,14 +18,14 @@ import ApplyDeliveryPage from './pages/rider/ApplyDeliveryPage';
 
 // default locale
 import lang from './Localization';
-import PartnersFoodListPage from './pages/partner/ParnersFoodListPage';
+import ParnerHomePage from './pages/partner/ParnerHomePage';
 import PartnerAddFoodPage from './pages/partner/PartnerAddFoodPage';
 import PartnerEditFoodPage from './pages/partner/PartnerEditFoodPage';
 import PartnerProfilePage from './pages/partner/PartnerProfilePage';
 import PartnerEditProfilePage from './pages/partner/PartnerEditProfilePage';
 
-import MemberUpdateProfilePage from './pages/member/MemberUpdateProfilePage';
-import MemberProfilePage from './pages/member/MemberProfilePage';
+import UpdateProfilePage from './pages/member/UpdateProfilePage';
+import ProfilePage from './pages/member/ProfilePage';
 import { AdminDashboardPage } from './pages/admin/AdminDashboardPage';
 import NotFound from './pages/NotFound';
 
@@ -52,17 +52,19 @@ function App() {
       <Route path="/memberorder" element={<MemberOrderPage />}></Route>
       <Route path="/member" element={<MemberHomePage />}></Route>
       <Route path="/detailfood" element={<MemberDetailFoodPage />}></Route>
-      <Route path="/profile" element={<MemberProfilePage />}></Route>
-      <Route path="/memberupdateprofile" element={<MemberUpdateProfilePage />}></Route>
+
+
+      <Route path="/viewprofile" element={<ProfilePage />}></Route>
+      <Route path="/updateprofile" element={<UpdateProfilePage />}></Route>
 
       <Route path="/rider" element={<DashboardRiderPage />}></Route>
       <Route path="/applydelivery" element={<ApplyDeliveryPage />}></Route>
 
-      <Route path="/partnerFoodList" element={<PartnersFoodListPage />}></Route>
+      <Route path="/partnerhome" element={<ParnerHomePage />}></Route>
       <Route path="/partnerAddFood" element={<PartnerAddFoodPage />}></Route>
       <Route path="/partnerEditFood" element={<PartnerEditFoodPage />}></Route>
-      <Route path='/partnerProfile' element={<PartnerProfilePage />}></Route>
-      <Route path='/partnerUpdateProfile' element={<PartnerEditProfilePage />}></Route>
+      {/* <Route path='/partnerProfile' element={<PartnerProfilePage />}></Route>
+      <Route path='/partnerUpdateProfile' element={<PartnerEditProfilePage />}></Route> */}
 
       <Route path='/admin' element={<AdminDashboardPage />}></Route>
       <Route path='/*' element={<NotFound />}></Route>

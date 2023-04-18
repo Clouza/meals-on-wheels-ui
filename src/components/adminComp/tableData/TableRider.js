@@ -56,7 +56,7 @@ export const TableRider = () => {
 
   const handleEdit = async (user) =>{
     try {
-      navigate('/memberupdateprofile', { state: { userDetail: user } });
+      navigate('/updateprofile', { state: { userDetail: user } });
     } catch (error) {
       console.error(error);
     }
@@ -147,6 +147,7 @@ export const TableRider = () => {
           </table>
         </div>
       </div>
+     
     </div>
   )
 }
