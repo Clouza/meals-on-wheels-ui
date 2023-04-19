@@ -36,10 +36,7 @@ if (!sessionStorage.getItem("locale")) {
   sessionStorage.setItem('language', 'English');
 }
 lang.setLanguage(sessionStorage.getItem("locale"));
-
-if (!sessionStorage.getItem("token")) {
-  OAuth2();
-}
+OAuth2();
 
 function App() {
   return (
