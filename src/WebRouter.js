@@ -21,22 +21,18 @@ import lang from './Localization';
 import ParnerHomePage from './pages/partner/ParnerHomePage';
 import PartnerAddFoodPage from './pages/partner/PartnerAddFoodPage';
 import PartnerEditFoodPage from './pages/partner/PartnerEditFoodPage';
-import PartnerProfilePage from './pages/partner/PartnerProfilePage';
-import PartnerEditProfilePage from './pages/partner/PartnerEditProfilePage';
 
 import UpdateProfilePage from './pages/member/UpdateProfilePage';
 import ProfilePage from './pages/member/ProfilePage';
 import { AdminDashboardPage } from './pages/admin/AdminDashboardPage';
 import NotFound from './pages/NotFound';
 import PartnerApplyOrderPage from './pages/partner/PartnerApplyOrderPage';
-import OAuth2 from './service/OAuth2';
 
 if (!sessionStorage.getItem("locale")) {
   sessionStorage.setItem("locale", "en");
   sessionStorage.setItem('language', 'English');
 }
 lang.setLanguage(sessionStorage.getItem("locale"));
-OAuth2();
 
 function App() {
   return (
