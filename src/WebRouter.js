@@ -29,12 +29,17 @@ import ProfilePage from './pages/member/ProfilePage';
 import { AdminDashboardPage } from './pages/admin/AdminDashboardPage';
 import NotFound from './pages/NotFound';
 import PartnerApplyOrderPage from './pages/partner/PartnerApplyOrderPage';
+import OAuth2 from './service/OAuth2';
 
 if (!sessionStorage.getItem("locale")) {
   sessionStorage.setItem("locale", "en");
   sessionStorage.setItem('language', 'English');
 }
 lang.setLanguage(sessionStorage.getItem("locale"));
+
+if (!sessionStorage.getItem("token")) {
+  OAuth2();
+}
 
 function App() {
   return (
