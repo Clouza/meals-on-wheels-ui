@@ -18,7 +18,7 @@ import Service from "../../service/Service";
 
 const NavbarMember = () => {
 
-
+    const [user,setUser]= useState();
     // For auth
     const authCtx = useContext(AuthContext);
     const navigate = useNavigate();
@@ -32,6 +32,7 @@ const NavbarMember = () => {
 
     // Add this useEffect hook to fetch user role after login
     useEffect(() => {
+        const user = sessionStorage.getItem('token')?Service.getUser().then(res=>{setUser(res.data)}):''
         if (sessionStorage.getItem('token')) {
             Service.getUser().then(response => {
                 setRole(response.data.role);
@@ -94,7 +95,7 @@ const NavbarMember = () => {
                 {sessionStorage.getItem('token') != null ?
                     <div className="atb flex">
                         <Link to={"/viewprofile"}>
-                            <span>"name user"</span>
+                            <span>{user?user.username:''}</span>
                         </Link>
                     </div>
                     :

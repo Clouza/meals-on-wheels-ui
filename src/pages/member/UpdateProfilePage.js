@@ -33,9 +33,9 @@ const UpdateProfilePage = () => {
     imageData.append('file', image);
     imageData.append('userID', user.userDetails.userDetailsId);
     Service.uploadImage(imageData,"USER")
-    Service.getUser().then(res=>{
-      res.data.role="ADMIN"?navigate("/admin"):navigate("/profile")
-    })
+    
+    user.role==="ADMIN"?navigate("/admin"):navigate("/viewprofile")
+   
   };
 
   return(

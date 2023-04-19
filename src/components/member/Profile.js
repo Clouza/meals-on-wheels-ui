@@ -1,8 +1,19 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../../css/partner/partnerProfile.css';
 import '../../css/landing.css'
+import { useEffect,useState } from 'react';
+import Service from '../../service/Service';
+import { useNavigate } from 'react-router-dom';
 
 const Profile = () => {
+	const [user,setUser]= useState();
+	const navigate = useNavigate();
+	useEffect(()=>{
+		Service.getUser().then(res=>{setUser(res.data)})
+	})
+	const editProfile =(user)=>{
+		navigate("/updateprofile",{ state: { userDetail: user } })
+	}
 	return(
 		<>
 			<div className='profile'>
@@ -15,12 +26,12 @@ const Profile = () => {
 							style={{maxWidth:'200px'}}
 						/>
 					<div className='mb-4'>
-						<p className='m-0'>Name: <span className='text-muted'>James Vincent Escartin </span></p>
-						<p className='m-0'>Age: <span className='text-muted'>18</span></p>
-						<p className='m-0'>Address: <span className='text-muted'>Cebu, Philippines </span></p>
-						<p className='m-0'>Number: <span className='text-muted'>+63 2658947856</span></p>
+						<p className='m-0'>Name: <span className='text-muted'>{user?user.userDetails.name:''}</span></p>
+						<p className='m-0'>Age: <span className='text-muted'>{user?user.userDetails.age:''}</span></p>
+						<p className='m-0'>Address: <span className='text-muted'>{user?user.userDetails.address:''} </span></p>
+						<p className='m-0'>Number: <span className='text-muted'>{user?user.userDetails.phoneNumber:''}</span></p>
 					</div>
-					<a href='/updateprofile' className='btn btn-primary'>Edit Profile</a>
+					<button className='btn btn-primary' onClick={()=>{editProfile(user)}}>Edit Profile</button>
 				</div>
 			
 				<div>
