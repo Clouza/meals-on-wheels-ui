@@ -135,9 +135,9 @@ const LoginComp = () => {
                                     </div>
                                     <input type="submit" value="Login" className="sign-btn" />
                                     <div className="d-flex justify-content-center">
-                                        <a href="#" className="btn  me-2" style={colorFacebook}><BsFacebook /></a>
-                                        <a href="#" className="btn me-2" style={colorGoogle}><i className="fab fa-google" /> <SlSocialGoogle /></a>
-                                        <a href="#" className="btn" style={colorTWitter}><i className="fab fa-twitter" /> <FiTwitter /></a>
+                                        <a href="http://localhost:8080/oauth2/authorize/facebook" className="btn  me-2" style={colorFacebook}><BsFacebook /></a>
+                                        <a href="http://localhost:8080/oauth2/authorize/google" className="btn me-2" style={colorGoogle}><i className="fab fa-google" /> <SlSocialGoogle /></a>
+                                        {/* <a href="http://localhost:8080/oauth2/authorize/twitter" className="btn" style={colorTWitter}><i className="fab fa-twitter" /> <FiTwitter /></a> */}
                                     </div>
 
                                     <p className="text">
