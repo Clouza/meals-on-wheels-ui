@@ -25,7 +25,7 @@ const UpdateProfilePage = () => {
       phoneNumber,
       age,
       address,
-      picture:image.name
+      picture:user.userId+"-"+image.name.replace(/[^a-zA-Z0-9.-]/g, '')
 
     };
     Service.updateUser(updatedUser).then(()=>alert("successfuly update profile"))
@@ -34,7 +34,9 @@ const UpdateProfilePage = () => {
     imageData.append('userID', user.userDetails.userDetailsId);
     Service.uploadImage(imageData,"USER")
     
-    user.role==="ADMIN"?navigate("/admin"):navigate("/viewprofile")
+    Service.getUser().then(res=>{
+      res.data.role=="ADMIN"?navigate("/admin"):navigate("/viewprofile")
+    })
    
   };
 
@@ -47,8 +49,8 @@ const UpdateProfilePage = () => {
       />
       <div className='profile_picture'>
           <img className='rounded-circle img-fluid mb-4'
-            src={"http://localhost:8080/get-image/USER/"+user.userDetails.userDetailsId+"-"+user.userDetails.picture}
-            style={{maxWidth:'200px'}}
+            src={"http://localhost:8080/get-image/USER/"+user.userDetails.picture}
+            style={{maxWidth:'200px',height:'200px'}}
           />
         <div className='row mb-4'>
           <div  className='col-sm-4 col-lg-3 mb-4'>
@@ -61,7 +63,7 @@ const UpdateProfilePage = () => {
           <div className='row col-sm-8 col-lg-9'>
             <h2>Update Profile</h2>
             <form className='col-sm-12'>
-            <input type="file" name="image" onChange={(e) => setImage(e.target.files[0])} accept="image/*" />
+            <input type="file" name="image" required onChange={(e) => setImage(e.target.files[0])} accept="image/*" />
             <div className='row'>
               <div className='col-sm-6 mb-4'>
                 <label className='form-label'>Name</label>

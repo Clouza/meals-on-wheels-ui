@@ -6,11 +6,21 @@ import Service from '../../service/Service';
 import { useNavigate } from 'react-router-dom';
 
 const Profile = () => {
-	const [user,setUser]= useState();
 	const navigate = useNavigate();
-	useEffect(()=>{
-		Service.getUser().then(res=>{setUser(res.data)})
-	})
+	const [user, setUser] = useState();
+	const picture = 
+useEffect(() => {
+  async function getUserData() {
+    try {
+      const response = await Service.getUser();
+      setUser(response.data);
+    } catch (error) {
+      console.error(error);
+      // handle error and display error message to user
+    }
+  }
+  getUserData();
+}, []);
 	const editProfile =(user)=>{
 		navigate("/updateprofile",{ state: { userDetail: user } })
 	}
@@ -22,8 +32,8 @@ const Profile = () => {
 				/>
 				<div className='profile_picture'>
 						<img className='rounded-circle img-fluid mb-4'
-							src='https://mdbcdn.b-cdn.net/img/new/avatars/9.webp'
-							style={{maxWidth:'200px'}}
+							src={"http://localhost:8080/get-image/USER/" + (user?user.userDetails.picture:'')}
+							style={{maxWidth:'200px',height:'200px'}}
 						/>
 					<div className='mb-4'>
 						<p className='m-0'>Name: <span className='text-muted'>{user?user.userDetails.name:''}</span></p>

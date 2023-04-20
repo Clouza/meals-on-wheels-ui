@@ -33,7 +33,7 @@ const TableOrder = ()=>{
       
       const apply=async(order)=>{
         const rider = (await Service.AdminGetSingleRider(selectedRider)).data
-        const updatedOrder = { ...order, status: "FOOD IS ON THE WAY",rider:rider.riders};
+        const updatedOrder = { ...order, status: "FOOD IS ON THE WAY",rider:rider};
         console.log(updatedOrder)
         Service.AdminHandleOrder(updatedOrder).then(() => {
             fetchOrders("FOOD IS PREPARED")
@@ -60,6 +60,7 @@ const TableOrder = ()=>{
                   <th>Meal Name</th>
                   <th>Stock</th>
                   <th>createdAt</th>
+                  <th>Delivery Address</th>
                   <th>Select Rider</th>
                   <th>Action</th>
                 </tr>
@@ -70,6 +71,7 @@ const TableOrder = ()=>{
                     <td>{order.meals.name}</td>
                     <td>{order.meals.stock}</td>
                     <td>{order.createdAt}</td>
+                    <td>{order.member.userDetails.Address}</td>
                     <td>
                     <select value={selectedRider} onChange={(event) => setSelectedRider(event.target.value)}>
                           <option value="">Select a rider</option>
@@ -101,7 +103,10 @@ const TableOrder = ()=>{
                 <tr>
                   <th>Meal Name</th>
                   <th>Stock</th>
-                  <th>createdAt</th>
+                  <th>Created At</th>
+                  <th>Member</th>
+                  <th>Delivery Address</th>
+                  <th>Rider</th>
                 </tr>
               </thead>
               <tbody>
@@ -110,6 +115,9 @@ const TableOrder = ()=>{
                     <td>{order.meals.name}</td>
                     <td>{order.meals.stock}</td>
                     <td>{order.createdAt}</td>
+                    <td>{order.member.userDetails.name}</td>
+                    <td>{order.member.userDetails.address}</td>
+                    <td>{order.rider.userDetails.name}</td>
                   </tr>
                 ))}
               </tbody>

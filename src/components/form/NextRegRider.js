@@ -35,7 +35,7 @@ const NextRegRider = () => {
         formData.append('username', loginCredentials.username);
         formData.append('text', vehicle);
 
-    
+        
         Service.registerRider(formData)
         .then(res => {
           // redirect page to login page

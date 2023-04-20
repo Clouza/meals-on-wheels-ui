@@ -29,7 +29,6 @@ const ApplyDeliveryPage = () =>{
 
       
       const finishOrder=async(order)=>{
-        
         const updatedOrder = { ...order, status: "ARRIVED" };
         console.log(updatedOrder)
         Service.handleOrder(updatedOrder).then(() => {
@@ -70,11 +69,9 @@ const ApplyDeliveryPage = () =>{
 									
 									<div className="col-md-6 col-lg-6 col-xl-6">
 										<h5>{order.meals.name}</h5>
-										<p className="text-truncate mb-4 mb-md-0">
-											Rider: <span>James</span> <br />
-											Members Address: <span>Cebu, Philippines</span> <br />
-											Status: <span>{order.status}</span>
-										</p>
+										<p>Member Name :{order.member.userDetails.name}</p>
+                    <p>Delivery Address :{order.member.userDetails.address}</p>
+                    <p>Phone Number :{order.member.userDetails.phoneNumber}</p>
 									</div>
 									<div className="col-md-6 col-lg-3 col-xl-3 border-sm-start-none border-start">
 										<div className="d-flex flex-column mt-4">

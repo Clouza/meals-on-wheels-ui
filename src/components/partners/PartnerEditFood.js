@@ -14,28 +14,47 @@ const PartnerEditFood = () => {
 	const navigate = useNavigate();
 	const handleSubmit = async (event) => {
     event.preventDefault();
-		
-		const partnerId =  (await Service.getPartnerByMealsId(meal.mealId)).data.partnerId
-    meal.name = name;
-		meal.stock = stock;
-		meal.description = description;
-		meal.picture = partnerId+"-"+image.name.replace(/[^a-zA-Z0-9.-]/g, '');
-		await Service.AdminUpdateFood(meal).then(()=>alert("successfuly update profile"))
-		const imageData = new FormData();
-		imageData.append('file', image);
-    imageData.append('userID',partnerId);
-		console.log(partnerId)
-    await Service.uploadImage(imageData,"MEALS");
-		Service.getUser().then(res=>{
-      res.data.role="ADMIN"?navigate("/admin"):navigate("/partnerFoodList")
-    })
+  
+    try {
+      const response = await Service.getUser();
+      if (response.data.role === "ADMIN") {
+        const partnerId = (await Service.getPartnerByMealsId(meal.mealId)).data.partnerId;
+        meal.name = name;
+        meal.stock = stock;
+        meal.description = description;
+        meal.picture = partnerId + "-" + image.name.replace(/[^a-zA-Z0-9.-]/g, '');
+        await Service.AdminUpdateFood(meal);
+        const imageData = new FormData();
+        imageData.append('file', image);
+        imageData.append('userID', partnerId);
+        await Service.uploadImage(imageData, "MEALS");
+        alert("successfully updated food");
+        navigate("/admin");
+      } else {
+        meal.name = name;
+        meal.stock = stock;
+        meal.description = description;
+        meal.picture = response.data.partners.partnerId + "-" + image.name.replace(/[^a-zA-Z0-9.-]/g, '');
+        await Service.updateFood(meal);
+        const imageData = new FormData();
+        imageData.append('file', image);
+        imageData.append('userID', response.data.partners.partnerId );
+        await Service.uploadImage(imageData, "MEALS");
+        alert("successfully updated food");
+        navigate("/partnerhome");
+      }
+    } catch (error) {
+      console.error(error);
+      // handle error and display error message to user
+    }
   }
+  
   return(
 		<>
 		<div className='container partnerAddFood '>
 			<div className="row cardForm">
 				<div className="col-sm-12 col-lg-6 mb-4  text-center">
-					<img className='img-fluid' src='https://images.unsplash.com/photo-1504674900247-0877df9cc836?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80'
+					<img className='img-fluid' src={"http://localhost:8080/get-image/Meals/"+meal.picture}
 						style={{height: '100%', borderRadius: '10px'}}></img>
 				</div>
 				<div className="col-sm-12 col-lg-6 mb-4">

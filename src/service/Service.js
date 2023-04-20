@@ -206,5 +206,8 @@ class Service {
     async donate({ name, email, total, comment }) {
         return await axios.post(`${API_BASE_URL}api/v1/donator/donate`, { name, email, total, comment });
     }
+    async getDonator(){
+        return await this.authorizedRequest("api/v1/admin/donators","GET")
+    }
 }
 export default new Service();

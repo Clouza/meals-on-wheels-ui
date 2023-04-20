@@ -28,7 +28,7 @@ const PartnerApplyOrderPage = () => {
       
       const apply=async(order)=>{
         const rider = (await Service.partnerGetSingleRider(selectedRider)).data
-        const updatedOrder = { ...order, status: "FOOD IS ON THE WAY",rider:rider.riders};
+        const updatedOrder = { ...order, status: "FOOD IS ON THE WAY",rider:rider};
         console.log(updatedOrder)
         Service.partnerHandleOrder(updatedOrder).then(() => {
             fetchOrders("FOOD IS PREPARED")
@@ -48,9 +48,9 @@ const PartnerApplyOrderPage = () => {
                     </div>
                     <div className="card-content">
                         <h4>{order.meals.name}</h4>
-                        <p>Deskripsi card</p>
-                        <p>Deskripsi card</p>
-                        <p>Deskripsi card</p>
+                        <p>Member Name :{order.member.userDetails.name}</p>
+                        <p>Delivery Address :{order.member.userDetails.address}</p>
+                        <p>Phone Number :{order.member.userDetails.phoneNumber}</p>
                     </div>
                       <select value={selectedRider} onChange={(event) => setSelectedRider(event.target.value)}>
                         <option value="">Select a rider</option>
