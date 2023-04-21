@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import '../../css/contact.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -9,8 +9,30 @@ import { BsFillTelephoneFill } from 'react-icons/bs';
 import { SlSocialTwitter } from 'react-icons/sl';
 import { BsInstagram } from 'react-icons/bs';
 import { AiOutlineFacebook, AiOutlineLinkedin } from 'react-icons/ai';
+import { Axios } from "axios";
+import Service from "../../service/Service";
 
 const Contact = () => {
+
+    const [firstName, setFirstName] = useState();
+    const [lastName, setLastName] = useState();
+    const [email, setEmail] = useState();
+    const [phone, setPhone] = useState();
+    const [message, setMessage] = useState();
+
+    const sendMessage = (e) => {
+        e.preventDefault();
+        Service.contact({
+            firstName,
+            lastName,
+            email,
+            phoneNumber: phone,
+            message,
+        })
+            .then(res => console.log(res))
+            .catch(err => console.error(err));
+    }
+
     return (
         <>
             <div className="contactUss">
@@ -20,33 +42,33 @@ const Contact = () => {
                 <div className="boxx">
                     <div className="contactt form">
                         <h3>Send a message</h3>
-                        <form className="container-fluid p-2 m-0 mb-4" style={{maxWidth: '800px'}}>
+                        <form className="container-fluid p-2 m-0 mb-4" style={{ maxWidth: '800px' }} onSubmit={sendMessage}>
                             <div className="row " >
                                 <div className="col">
                                     <label className="form-label">First Name</label>
-                                    <input className="form-control" required placeholder="Enter your first name" type="text"/>
+                                    <input className="form-control" required placeholder="Enter your first name" type="text" onChange={(e) => setFirstName(e.target.value)} />
                                 </div>
                                 <div className="col">
                                     <label className="form-label">Last Name</label>
-                                    <input className="form-control" required placeholder="Enter your last name" type="text"/>
+                                    <input className="form-control" required placeholder="Enter your last name" type="text" onChange={(e) => setLastName(e.target.value)} />
                                 </div>
                             </div>
                             <div className="row " >
                                 <div className="col">
                                     <label className="form-label">Email</label>
-                                    <input className="form-control" required placeholder="@example.com" type="email"/>
+                                    <input className="form-control" required placeholder="@example.com" type="email" onChange={(e) => setEmail(e.target.value)} />
                                 </div>
                                 <div className="col">
                                     <label className="form-label">Phone Number</label>
-                                    <input className="form-control" required placeholder="Enter your phone number" type="text"/>
+                                    <input className="form-control" required placeholder="Enter your phone number" type="text" onChange={(e) => setPhone(e.target.value)} />
                                 </div>
                             </div>
                             <div>
                                 <label className="form-label">Message</label>
-                                <textarea className="form-control" rows="5" placeholder="Enter your message"></textarea>
+                                <textarea className="form-control" rows="5" placeholder="Enter your message" onChange={(e) => setMessage(e.target.value)}></textarea>
                             </div>
-                            <button className="btn btn-primary">Send</button>
-                           
+                            <button className="btn btn-primary" type="submit">Send</button>
+
                         </form>
                     </div>
                     {/* info */}

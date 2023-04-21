@@ -5,16 +5,17 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import Service from '../../service/Service';
 import { useState } from 'react';
 const PartnerEditFood = () => {
-	const location = useLocation();
+  const location = useLocation();
   const meal = location.state.foodDetail;
   const [name, setName] = useState(meal.name);
   const [stock, setStock] = useState(meal.stock);
   const [description, setDescription] = useState(meal.description);
   const [image, setImage] = useState(meal.picture);
-	const navigate = useNavigate();
-	const handleSubmit = async (event) => {
+  const navigate = useNavigate();
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
-  
+
     try {
       const response = await Service.getUser();
       if (response.data.role === "ADMIN") {
@@ -38,7 +39,7 @@ const PartnerEditFood = () => {
         await Service.updateFood(meal);
         const imageData = new FormData();
         imageData.append('file', image);
-        imageData.append('userID', response.data.partners.partnerId );
+        imageData.append('userID', response.data.partners.partnerId);
         await Service.uploadImage(imageData, "MEALS");
         alert("successfully updated food");
         navigate("/partnerhome");
@@ -48,26 +49,26 @@ const PartnerEditFood = () => {
       // handle error and display error message to user
     }
   }
-  
-  return(
-		<>
-		<div className='container partnerAddFood '>
-			<div className="row cardForm">
-				<div className="col-sm-12 col-lg-6 mb-4  text-center">
-					<img className='img-fluid' src={"http://localhost:8080/get-image/Meals/"+meal.picture}
-						style={{height: '100%', borderRadius: '10px'}}></img>
-				</div>
-				<div className="col-sm-12 col-lg-6 mb-4">
-						<form className='container' onSubmit={handleSubmit}>
+
+  return (
+    <>
+      <div className='container partnerAddFood '>
+        <div className="row cardForm">
+          <div className="col-sm-12 col-lg-6 mb-4  text-center">
+            <img className='img-fluid' src={"http://localhost:8080/get-image/Meals/" + meal.picture}
+              style={{ height: '100%', borderRadius: '10px' }}></img>
+          </div>
+          <div className="col-sm-12 col-lg-6 mb-4">
+            <form className='container' onSubmit={handleSubmit}>
               <h2>Edit Food</h2>
               <div className='row mb-4'>
                 <div className='col-sm-12 col-xl-6 mb-4'>
                   <label className='form-label'>Food Name</label>
-                  <input className='form-control' type='text' value={name} onChange={(event) => setName(event.target.value)} required/>
+                  <input className='form-control' type='text' value={name} onChange={(event) => setName(event.target.value)} required />
                 </div>
                 <div className='col-sm-12 col-xl-6 '>
                   <label className='form-label'>Stock</label>
-                  <input className='form-control' type='text' value={stock} onChange={(event) => setStock(event.target.value)} required/>
+                  <input className='form-control' type='text' value={stock} onChange={(event) => setStock(event.target.value)} required />
                 </div>
               </div>
               <div className='mb-4'>
@@ -77,14 +78,14 @@ const PartnerEditFood = () => {
               <div className='mb-4'>
                 <label className='form-label'>Upload Image</label>
                 <input className='form-control' type='file' onChange={(event) => setImage(event.target.files[0])} accept="image/*" />
-              </div> 
+              </div>
               <button className='btn btn-primary'>Save Changes</button>
             </form>
-				</div>
-				</div>
-			</div>
-		</>
-	)
+          </div>
+        </div>
+      </div>
+    </>
+  )
 }
 
 export default PartnerEditFood

@@ -86,7 +86,10 @@ class Service {
         return await this.nonAuthorizedRequest("login", data);
     }
 
-
+    // contact
+    async contact(data) {
+        return await this.nonAuthorizedRequest("contact", data);
+    }
 
     // ----------------------------------------------------------------Administrator Dasboard---------------------------------------------------------------------
 
@@ -132,11 +135,11 @@ class Service {
     async AdminGetOrders(status) {
         return await this.authorizedRequest("api/v1/admin/order/" + status, 'GET');
     }
-    async AdminGetRider(){
-        return await this.authorizedRequest("api/v1/admin/riders",'GET')
+    async AdminGetRider() {
+        return await this.authorizedRequest("api/v1/admin/riders", 'GET')
     }
-    async AdminGetSingleRider(username){
-        return await this.authorizedRequest("api/v1/admin/user/"+username,"GET")
+    async AdminGetSingleRider(username) {
+        return await this.authorizedRequest("api/v1/admin/user/" + username, "GET")
     }
     async AdminHandleOrder(data) {
         return await this.authorizedRequest("api/v1/admin/handle-order", 'PUT', data);
@@ -161,15 +164,15 @@ class Service {
     async partnerHandleOrder(data) {
         return await this.authorizedRequest("api/v1/partner/handle-order", 'PUT', data);
     }
-    async partnerGetSingleRider(username){
-        return await this.authorizedRequest("api/v1/partner/user/"+username,"GET")
+    async partnerGetSingleRider(username) {
+        return await this.authorizedRequest("api/v1/partner/user/" + username, "GET")
     }
-    async partnerGetRider(){
-        return await this.authorizedRequest("api/v1/partner/riders",'GET')
+    async partnerGetRider() {
+        return await this.authorizedRequest("api/v1/partner/riders", 'GET')
     }
     // ----------------------------------------------------------------Rider Side---------------------------------------------------------------------
-    async updateProfile(data){
-        return await this.authorizedRequest("api/v1/rider/update",'PUT',data)
+    async updateProfile(data) {
+        return await this.authorizedRequest("api/v1/rider/update", 'PUT', data)
     }
     async handleOrder(data) {
         return await this.authorizedRequest("api/v1/rider/handle-order", 'PUT', data);
@@ -184,11 +187,11 @@ class Service {
     async orderMeals(data) {
         return await this.authorizedRequest("api/v1/member/order-meals", 'POST', data);
     }
-    async memberGetOrders(status){
-        return await this.authorizedRequest("api/v1/member/order/"+status,'GET')
+    async memberGetOrders(status) {
+        return await this.authorizedRequest("api/v1/member/order/" + status, 'GET')
     }
-    async deleteOrder(id){
-        return await this.authorizedRequest("api/v1/member/history/"+id,'DELETE')
+    async deleteOrder(id) {
+        return await this.authorizedRequest("api/v1/member/history/" + id, 'DELETE')
     }
     async giveRatings(data) {
         return await this.authorizedRequest("api/v1/member/rate-service", 'PUT', data);
@@ -206,8 +209,8 @@ class Service {
     async donate({ name, email, total, comment }) {
         return await axios.post(`${API_BASE_URL}api/v1/donator/donate`, { name, email, total, comment });
     }
-    async getDonator(){
-        return await this.authorizedRequest("api/v1/admin/donators","GET")
+    async getDonator() {
+        return await this.authorizedRequest("api/v1/admin/donators", "GET")
     }
 }
 export default new Service();

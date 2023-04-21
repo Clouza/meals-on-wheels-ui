@@ -13,7 +13,7 @@ const RiderHeadingDelivery = () => {
 
     return (
         <>
-        <br /><br /><br /><br /><br />
+            <br /><br /><br /><br /><br />
             <div className="support container section">
                 <div className="sectionContainer">
                     <div data-aos='fade-up' data-aos-duration='3000' className="titlesDiv">
