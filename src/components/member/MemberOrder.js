@@ -139,9 +139,8 @@ const MemberOrder = () => {
 									<div className="col-md-6 col-lg-6 col-xl-6">
 										<h5>{order.meals.name}</h5>
 										<p className="text-truncate mb-4 mb-md-0">
-                    <p>Rider Name :{order.rider.userDetails.name}</p>
                     <p>Delivery Address :{order.member.userDetails.address}</p>
-                    <p>Phone Number :{order.rider.userDetails.phoneNumber}</p>
+                    <p>Phone Number :{order.status}</p>
 										</p>
 									</div>
 									<div className="col-md-6 col-lg-3 col-xl-3 border-sm-start-none border-start">
